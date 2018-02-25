@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Box component as intended 1`] = `
+<div
+  className="Box"
+>
+  <div>
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value="1"
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      className="Square"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
