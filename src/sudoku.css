@@ -1,0 +1,19 @@
+.Square {
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border: 1px solid rgb(64, 64, 64);
+}
+
+.Square:focus {
+    background-color: rgba(0, 66, 99, 0.5);
+    outline: none;
+}
+
+.Box {
+    border: 1px solid #000000;
+}
+
+.Row {
+    display: flex;
+}
