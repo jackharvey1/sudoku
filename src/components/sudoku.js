@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Box from './box';
 import '../sudoku.css';
 
 class Sudoku extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
+
+        const grid = props.grid;
 
         this.state = {
-            values: [...Array(9)].map(() => Array(9).fill(""))
+            values: grid
         };
     }
 
@@ -53,7 +54,8 @@ class Sudoku extends Component {
 
     static get propTypes() {
         return {
-            onChange: PropTypes.func
+            onChange: PropTypes.func,
+            grid: PropTypes.array
         };
     }
 }
