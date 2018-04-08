@@ -28,8 +28,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint src",
-    "test": "npm run lint && react-scripts test --env=jsdom",
+    "lint": "eslint src/",
+    "jest": "react-scripts test --env=jsdom",
+    "test": "npm run lint && npm run jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
