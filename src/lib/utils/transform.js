@@ -4,26 +4,26 @@ function circularTransform(sudoku) {
         .fill(null)
         .map(() => []);
 
-    for (let boxNumber = 0; boxNumber < sudoku.length; boxNumber++) {
-        const fromTop = Math.floor(boxNumber / width) * width;
-        const fromLeft = (boxNumber % width) * width;
+    for (let major = 0; major < sudoku.length; major++) {
+        const majorGroup = Math.floor(major / width) * width;
+        const minorGroup = (major % width) * width;
 
-        for (let boxRow = fromTop; boxRow < fromTop + width; boxRow++) {
-            transformedSudoku[boxNumber] = transformedSudoku[boxNumber]
+        for (let minor = majorGroup; minor < majorGroup + width; minor++) {
+            transformedSudoku[major] = transformedSudoku[major]
                 .concat(
-                    sudoku[boxRow].slice(fromLeft, fromLeft + width)
+                    sudoku[minor].slice(minorGroup, minorGroup + width)
                 );
         }
     }
     return transformedSudoku;
 }
 
-function circularPositionMap (row, column) {
-    const fromTop = Math.floor(row / 3);
-    const fromLeft = Math.floor(column / 3);
+function circularPositionMap (major, minor) {
+    const majorGroup = Math.floor(major / 3);
+    const minorGroup = Math.floor(minor / 3);
     return {
-        major: (fromTop * 3) + fromLeft,
-        minor: ((row % 3) * 3) + (column % 3)
+        major: (majorGroup * 3) + minorGroup,
+        minor: ((major % 3) * 3) + (minor % 3)
     };
 }
 
