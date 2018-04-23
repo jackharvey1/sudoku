@@ -17,7 +17,7 @@ class ListenerWrapper extends Component {
     static get propTypes() {
         return {
             onKeyPress: PropTypes.func,
-            children: PropTypes.element
+            children: PropTypes.arrayOf(PropTypes.element)
         };
     }
 }

@@ -10,15 +10,16 @@ import { solve } from './solver';
 // https://www.technologyreview.com/s/426554/mathematicians-solve-minimum-sudoku-problem
 const mcGuireLimit = 17;
 
-function generatePuzzle (sudoku = generateFilledGrid(), branchingDifficulty) {
+function generatePuzzle (sudoku = generateFilledGrid(), previousSolution, branchingDifficulty) {
     const clueCount = getClueCount(sudoku);
     const nextSudoku = removeMirroredCluePair(sudoku);
 
     const solution = solve(nextSudoku);
 
     return solution.sudoku && (clueCount - 2) > mcGuireLimit
-        ? generatePuzzle(nextSudoku, solution.branchingDifficulty)
+        ? generatePuzzle(nextSudoku, solution.sudoku, solution.branchingDifficulty)
         : {
+            solution: circularTransform(previousSolution),
             sudoku: circularTransform(sudoku),
             difficulty: branchingDifficulty + (81 - clueCount)
         };

@@ -103,6 +103,14 @@ describe('Array util functions', () => {
         );
     });
 
+    it('keeps the same elements after shuffling', () => {
+        expect(
+            shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9]).sort()
+        ).toEqual(
+            [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        );
+    });
+
     it('finds the smallest subarray', () => {
         expect(getSmallestClueSet([
             [[2, 4, 5, 9], [2, 3, 4, 5, 8], [2, 3, 5, 8, 9], [], [3, 5, 6, 8, 9], [], [3, 5, 6, 8, 9], [2, 5, 6, 9], [2, 3, 8, 9]],
@@ -137,8 +145,8 @@ describe('Array util functions', () => {
         it('returns false for non-equivalent arrays two levels deep', () => {
             expect(
                 deepEquals(
-                    [1, [3, 9, 8], 1, [2]],
-                    [1, [3, 7, 5], 6]
+                    [[1], [3, 9, 8], 1, [2]],
+                    [[1], [3, 7, 5], 6]
                 )).toBe(false);
         });
 
