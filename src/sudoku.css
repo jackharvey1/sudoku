@@ -1,17 +1,31 @@
+* {
+    margin: 0;
+}
+
 .Square {
+    display: table-cell;
+
     width: 24px;
     height: 24px;
+
+    padding: 2px;
+
     text-align: center;
+    vertical-align: middle;
+
     border: 1px solid rgb(64, 64, 64);
 }
 
-.Square:focus {
+.Square--selected {
     background-color: rgba(0, 66, 99, 0.5);
-    outline: none;
 }
 
 .Box {
     border: 1px solid #000000;
+}
+
+.Box-row {
+    display: table;
 }
 
 .Row {

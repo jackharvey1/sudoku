@@ -4,64 +4,54 @@ exports[`renders the Box component as intended 1`] = `
 <div
   className="Box"
 >
-  <div>
-    <input
+  <div
+    className="Box-row"
+  >
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value="1"
+      onClick={[Function]}
+    >
+      1
+    </div>
+    <div
+      className="Square"
+      onClick={[Function]}
     />
-    <input
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-    <input
-      className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
   </div>
-  <div>
-    <input
+  <div
+    className="Box-row"
+  >
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
-    <input
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
-    <input
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
   </div>
-  <div>
-    <input
+  <div
+    className="Box-row"
+  >
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
-    <input
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
-    <input
+    <div
       className="Square"
-      onChange={[Function]}
-      type="text"
-      value=""
+      onClick={[Function]}
     />
   </div>
 </div>
