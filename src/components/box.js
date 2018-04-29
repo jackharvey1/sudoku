@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { deepEquals } from '../lib/utils/array';
 
 class Box extends Component {
     render () {
@@ -24,17 +25,27 @@ class Box extends Component {
         );
     }
 
-    renderSquare(i) {
-        const isSelected = this.props.selectedBox === this.props.position && this.props.selectedSquare === i;
-        const className = `Square${isSelected ? ' Square--selected' : ''}`;
+    renderSquare(square) {
+        const className = this.getClassName(square);
         return (
             <div
                 className={className}
-                onClick={() => this.props.onClick(this.props.position, i)}
+                onClick={() => this.props.onClick(this.props.box, square)}
             >
-                {this.props.values[i]}
+                {this.props.values[square]}
             </div>
         );
+    }
+
+    getClassName (square) {
+        const isSelected = this.props.selectedBox === this.props.box &&
+            this.props.selectedSquare === square;
+        const isLocked = this.props.lockedCells.some(lockedCell =>
+            deepEquals(lockedCell, [this.props.box, square])
+        );
+        const selectedClass = isSelected ? ' Square--selected' : '';
+        const lockedClass = isLocked ? ' Square--locked' : '';
+        return `Square${selectedClass}${lockedClass}`;
     }
 
     static get propTypes() {
@@ -43,7 +54,8 @@ class Box extends Component {
             selectedBox: PropTypes.number,
             selectedSquare: PropTypes.number,
             values: PropTypes.array,
-            position: PropTypes.number
+            box: PropTypes.number,
+            lockedCells: PropTypes.array
         };
     }
 }

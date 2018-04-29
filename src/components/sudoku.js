@@ -4,12 +4,15 @@ import Box from './box';
 import ListenerWrapper from './listener-wrapper';
 import '../sudoku.css';
 import { circularPositionMap } from '../lib/utils/transform';
+import { getClueIndices, deepEquals } from '../lib/utils/array';
 
 class Sudoku extends Component {
     constructor (props) {
         super(props);
 
         const grid = props.grid;
+
+        this.lockedCells = getClueIndices(grid);
 
         this.state = {
             values: grid,
@@ -45,8 +48,9 @@ class Sudoku extends Component {
     renderBox (i) {
         return (
             <Box
-                position={i}
+                box={i}
                 values={this.state.values[i]}
+                lockedCells={this.lockedCells}
                 onClick={this.selectSquare.bind(this)}
                 selectedBox={this.state.selectedBox}
                 selectedSquare={this.state.selectedSquare}
@@ -58,7 +62,11 @@ class Sudoku extends Component {
         const { selectedBox, selectedSquare } = this.state;
         let { major: row, minor: column } = circularPositionMap(selectedBox, selectedSquare);
 
-        if (/[1-9]/.test(key)) {
+        const isLockedCell = this.lockedCells.some(lockedCell =>
+            deepEquals(lockedCell, [selectedBox, selectedSquare])
+        );
+
+        if (/[1-9]/.test(key) && !isLockedCell) {
             this.insertValue(key);
         } else if (key === 'ArrowUp') {
             row = row === 0 ? row : row - 1;

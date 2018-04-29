@@ -1,11 +1,12 @@
 const {
     getClueCount,
-    getClueIndexes,
+    getClueIndices,
     pickRandomClue,
     removeMirroredCluePair,
     mirrorCoordinates,
     shuffleArray,
     getSmallestClueSet,
+    deepEquals,
     arrayExcludingElement
 } = require('../../../lib/utils/array');
 import { sudoku, solvedSudoku } from '../../sudokus.json';
@@ -39,7 +40,7 @@ describe('Array util functions', () => {
     });
 
     it('gets clue indexes correctly', () => {
-        expect(getClueIndexes(sudoku)).toEqual([
+        expect(getClueIndices(sudoku)).toEqual([
             [0, 3], [0, 5],
             [1, 1], [1, 2], [1, 4], [1, 6], [1, 7],
             [4, 0], [4, 4], [4, 8],
@@ -106,6 +107,36 @@ describe('Array util functions', () => {
             [[2, 5, 7], [], [2, 5], [], [6, 7], [], [4, 6], [], [4]],
             [[], [2, 3], [], [2, 6], [1, 3, 6], [1, 3, 6], [], [1, 6, 9], []]
         ])).toEqual([1, 0]);
+    });
+
+    describe('deep equals', () => {
+        it('returns true for equivalent arrays one levels deep', () => {
+            expect(deepEquals([1], [1])).toBe(true);
+        });
+
+        it('returns true for equivalent arrays two levels deep', () => {
+            expect(
+                deepEquals(
+                    [1, [2, 9, 5], [3]],
+                    [1, [2, 9, 5], [3]]
+                )).toBe(true);
+        });
+
+        it('returns false for non-equivalent arrays one levels deep', () => {
+            expect(deepEquals([1], [2])).toBe(false);
+        });
+
+        it('returns false for non-equivalent arrays two levels deep', () => {
+            expect(
+                deepEquals(
+                    [1, [3, 9, 8], 1, [2]],
+                    [1, [3, 7, 5], 6]
+                )).toBe(false);
+        });
+
+        it('returns false when arrays are not in the same position', () => {
+            expect(deepEquals([[1]], [1])).toBe(false);
+        });
     });
 
     it('excludes an element correctly', () => {
