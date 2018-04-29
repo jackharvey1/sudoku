@@ -9,8 +9,9 @@ exports[`renders the Sudoku component as intended 1`] = `
       className="Row"
     >
       <Box
+        box={0}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={0}
         selectedBox={null}
         selectedSquare={null}
         values={
@@ -28,8 +29,9 @@ exports[`renders the Sudoku component as intended 1`] = `
         }
       />
       <Box
+        box={1}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={1}
         selectedBox={null}
         selectedSquare={null}
         values={
@@ -47,69 +49,9 @@ exports[`renders the Sudoku component as intended 1`] = `
         }
       />
       <Box
+        box={2}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={2}
-        selectedBox={null}
-        selectedSquare={null}
-        values={
-          Array [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-          ]
-        }
-      />
-    </div>
-    <div
-      className="Row"
-    >
-      <Box
-        onClick={[Function]}
-        position={3}
-        selectedBox={null}
-        selectedSquare={null}
-        values={
-          Array [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-          ]
-        }
-      />
-      <Box
-        onClick={[Function]}
-        position={4}
-        selectedBox={null}
-        selectedSquare={null}
-        values={
-          Array [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-          ]
-        }
-      />
-      <Box
-        onClick={[Function]}
-        position={5}
         selectedBox={null}
         selectedSquare={null}
         values={
@@ -131,8 +73,9 @@ exports[`renders the Sudoku component as intended 1`] = `
       className="Row"
     >
       <Box
+        box={3}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={6}
         selectedBox={null}
         selectedSquare={null}
         values={
@@ -150,8 +93,9 @@ exports[`renders the Sudoku component as intended 1`] = `
         }
       />
       <Box
+        box={4}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={7}
         selectedBox={null}
         selectedSquare={null}
         values={
@@ -169,8 +113,73 @@ exports[`renders the Sudoku component as intended 1`] = `
         }
       />
       <Box
+        box={5}
+        lockedCells={Array []}
         onClick={[Function]}
-        position={8}
+        selectedBox={null}
+        selectedSquare={null}
+        values={
+          Array [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+          ]
+        }
+      />
+    </div>
+    <div
+      className="Row"
+    >
+      <Box
+        box={6}
+        lockedCells={Array []}
+        onClick={[Function]}
+        selectedBox={null}
+        selectedSquare={null}
+        values={
+          Array [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+          ]
+        }
+      />
+      <Box
+        box={7}
+        lockedCells={Array []}
+        onClick={[Function]}
+        selectedBox={null}
+        selectedSquare={null}
+        values={
+          Array [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+          ]
+        }
+      />
+      <Box
+        box={8}
+        lockedCells={Array []}
+        onClick={[Function]}
         selectedBox={null}
         selectedSquare={null}
         values={

@@ -6,7 +6,7 @@ function getClueCount (sudoku) {
         .reduce((totalClues, cluesSubtotal) => totalClues + cluesSubtotal);
 }
 
-function getClueIndexes (sudoku) {
+function getClueIndices (sudoku) {
     return [].concat(
         ...sudoku.map((row, i) =>
             row
@@ -21,7 +21,7 @@ function getClueIndexes (sudoku) {
 }
 
 function pickRandomClue (sudoku) {
-    const indexesOfClues = getClueIndexes(sudoku);
+    const indexesOfClues = getClueIndices(sudoku);
     const randomIndex = Math.floor(Math.random() * indexesOfClues.length);
     return indexesOfClues[randomIndex];
 }
@@ -63,6 +63,23 @@ function getSmallestClueSet (array) {
     return [Math.floor(flattenedIndex / 9), flattenedIndex % 9];
 }
 
+function deepEquals (firstArray, secondArray) {
+    if (firstArray.length !== secondArray.length) {
+        return false;
+    }
+
+    for (let i = 0; i < firstArray.length; i++) {
+        if (Array.isArray(firstArray[i])) {
+            return Array.isArray(secondArray[i])
+                ? deepEquals(firstArray[i], secondArray[i])
+                : false;
+        } else if (firstArray[i] !== secondArray[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 const arrayExcludingElement = (array, index) =>
     [
         ...array.slice(0, index),
@@ -71,11 +88,12 @@ const arrayExcludingElement = (array, index) =>
 
 export {
     getClueCount,
-    getClueIndexes,
+    getClueIndices,
     pickRandomClue,
     removeMirroredCluePair,
     mirrorCoordinates,
     shuffleArray,
     getSmallestClueSet,
+    deepEquals,
     arrayExcludingElement
 };

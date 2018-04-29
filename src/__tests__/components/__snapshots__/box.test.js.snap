@@ -8,13 +8,13 @@ exports[`renders the Box component as intended 1`] = `
     className="Box-row"
   >
     <div
-      className="Square"
+      className="Square Square--selected"
       onClick={[Function]}
     >
       1
     </div>
     <div
-      className="Square"
+      className="Square Square--locked"
       onClick={[Function]}
     />
     <div

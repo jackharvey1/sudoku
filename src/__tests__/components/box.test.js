@@ -9,7 +9,13 @@ beforeEach(() => {
 });
 
 it('renders the Box component as intended', () => {
-    renderer.render(<Box values={["1", "", "", "", "", "", "", "", ""]} />);
+    renderer.render(<Box
+        box={0}
+        values={["1", "", "", "", "", "", "", "", ""]}
+        lockedCells={[[0, 1]]}
+        selectedBox={0}
+        selectedSquare={0}
+    />);
     const output = renderer.getRenderOutput();
     expect(output).toMatchSnapshot();
 });
