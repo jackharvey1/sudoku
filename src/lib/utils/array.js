@@ -48,7 +48,7 @@ function shuffleArray (array) {
     return array.map(() => {
         const indexToPick = Math.floor(Math.random() * workingArray.length);
         const pickedValue = workingArray[indexToPick];
-        workingArray.pop();
+        workingArray.splice(indexToPick, 1);
         return pickedValue;
     });
 }
