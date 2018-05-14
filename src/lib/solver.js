@@ -3,7 +3,7 @@ import { getPossibles } from './utils/possibles';
 import { arrayExcludingElement, getSmallestClueSet } from './utils/array';
 import { validateSudoku, isSolved } from './utils/validate';
 
-function solve (sudokuAsRows, difficultyTarget = 900) {
+function solve (sudokuAsRows, difficultyTarget = 600) {
     const stack = [sudokuAsRows];
     let branchingDifficulty = 0;
 

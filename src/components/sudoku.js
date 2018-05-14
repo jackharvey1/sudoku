@@ -1,47 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Box from './box';
-import ListenerWrapper from './listener-wrapper';
 import '../sudoku.css';
-import { circularPositionMap } from '../lib/utils/transform';
-import { getClueIndices, deepEquals } from '../lib/utils/array';
 
 class Sudoku extends Component {
-    constructor (props) {
-        super(props);
-
-        const grid = props.grid;
-
-        this.lockedCells = getClueIndices(grid);
-
-        this.state = {
-            values: grid,
-            selectedBox: null,
-            selectedSquare: null
-        };
-    }
-
     render () {
         return (
-            <ListenerWrapper onKeyPress={this.handleKeyDown.bind(this)}>
-                <div>
-                    <div className="Row">
-                        {this.renderBox(0)}
-                        {this.renderBox(1)}
-                        {this.renderBox(2)}
-                    </div>
-                    <div className="Row">
-                        {this.renderBox(3)}
-                        {this.renderBox(4)}
-                        {this.renderBox(5)}
-                    </div>
-                    <div className="Row">
-                        {this.renderBox(6)}
-                        {this.renderBox(7)}
-                        {this.renderBox(8)}
-                    </div>
+            <div className="Sudoku">
+                <div className="Row">
+                    {this.renderBox(0)}
+                    {this.renderBox(1)}
+                    {this.renderBox(2)}
                 </div>
-            </ListenerWrapper>
+                <div className="Row">
+                    {this.renderBox(3)}
+                    {this.renderBox(4)}
+                    {this.renderBox(5)}
+                </div>
+                <div className="Row">
+                    {this.renderBox(6)}
+                    {this.renderBox(7)}
+                    {this.renderBox(8)}
+                </div>
+            </div>
         );
     }
 
@@ -49,62 +30,22 @@ class Sudoku extends Component {
         return (
             <Box
                 box={i}
-                values={this.state.values[i]}
-                lockedCells={this.lockedCells}
-                onClick={this.selectSquare.bind(this)}
-                selectedBox={this.state.selectedBox}
-                selectedSquare={this.state.selectedSquare}
+                values={this.props.grid[i]}
+                lockedCells={this.props.lockedCells}
+                onClick={this.props.selectSquare}
+                selectedBox={this.props.selectedBox}
+                selectedSquare={this.props.selectedSquare}
             />
         );
     }
 
-    handleKeyDown ({ key }) {
-        const { selectedBox, selectedSquare } = this.state;
-        let { major: row, minor: column } = circularPositionMap(selectedBox, selectedSquare);
-
-        const isLockedCell = this.lockedCells.some(lockedCell =>
-            deepEquals(lockedCell, [selectedBox, selectedSquare])
-        );
-
-        if (/[1-9]/.test(key) && !isLockedCell) {
-            this.insertValue(key);
-        } else if (key === 'ArrowUp') {
-            row = row === 0 ? row : row - 1;
-        } else if (key === 'ArrowLeft') {
-            column = column === 0 ? column : column - 1;
-        } else if (key === 'ArrowRight') {
-            column = column === 8 ? column : column + 1;
-        } else if (key === 'ArrowDown') {
-            row = row === 8 ? row : row + 1;
-        }
-
-        const { major: box, minor: square } = circularPositionMap(row, column);
-
-        this.setState({
-            selectedBox: box,
-            selectedSquare: square
-        });
-    }
-
-    selectSquare (box, square) {
-        this.setState({
-            selectedBox: box,
-            selectedSquare: square
-        });
-    }
-
-    insertValue (value) {
-        const nextValues = this.state.values.slice();
-        const relevantValue = value[value.length - 1];
-        const { selectedBox: box, selectedSquare: square } = this.state;
-        nextValues[box][square] = Number(relevantValue);
-        this.setState({ values: nextValues });
-    }
-
     static get propTypes() {
         return {
-            onChange: PropTypes.func,
-            grid: PropTypes.array
+            lockedCells: PropTypes.array,
+            grid: PropTypes.array,
+            selectSquare: PropTypes.func,
+            selectedBox: PropTypes.number,
+            selectedSquare: PropTypes.number
         };
     }
 }
