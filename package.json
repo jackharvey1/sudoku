@@ -22,7 +22,8 @@
       }
     },
     "coverageReporters": [
-      "text"
+      "text",
+      "lcov"
     ]
   },
   "scripts": {
