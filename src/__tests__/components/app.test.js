@@ -5,6 +5,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { mount } from 'enzyme';
 import { emptySudoku, solvedSudoku } from '../sudokus.json';
 import { generatePuzzle } from '../../lib/generator';
+import { deepClone } from '../../lib/utils/array.js';
 
 jest.mock('../../lib/generator');
 
@@ -16,7 +17,7 @@ beforeEach(() => {
 
 generatePuzzle.mockImplementation(() => ({
     sudoku: emptySudoku,
-    solution: solvedSudoku,
+    solution: deepClone(solvedSudoku),
     difficulty: Infinity
 }));
 
@@ -32,7 +33,7 @@ it('resets to a valid state', () => {
     app.update();
     expect(app.state()).toEqual({
         sudoku: emptySudoku,
-        solution: solvedSudoku,
+        solution: deepClone(solvedSudoku),
         difficulty: Infinity,
         lockedCells: [],
         selectedBox: null,
@@ -49,7 +50,7 @@ it('returns null when there\'s no sudoku set in the state', () => {
 it('displays the win message when the sudoku is solved', () => {
     const testRenderer = Renderer.create(<App />);
     testRenderer.getInstance().setState({
-        sudoku: solvedSudoku
+        sudoku: deepClone(solvedSudoku)
     });
     expect(testRenderer.toJSON()).toMatchSnapshot();
 });
@@ -67,6 +68,23 @@ it('casts to a number and inputs into the correct square', () => {
     app.update();
 
     expect(app.state().sudoku[0][0]).toEqual(1);
+});
+
+it('deletes a key when backspace is pressed', () => {
+    const app = mount(<App />);
+
+    app.setState({
+        sudoku: deepClone(solvedSudoku),
+        lockedCells: [],
+        selectedBox: 0,
+        selectedSquare: 0
+    });
+
+    const event = new KeyboardEvent('keydown', { key: 'Backspace' });
+    window.dispatchEvent(event);
+    app.update();
+
+    expect(app.state().sudoku[0][0]).toEqual('');
 });
 
 it('does not allow other inputs', () => {
@@ -91,6 +109,24 @@ it('highlights a square when clicked', () => {
     square.simulate('click');
 
     expect(square.render().hasClass('Square--selected')).toBe(true);
+});
+
+it('does not allow input into locked cells', () => {
+    const app = mount(<App />);
+
+    app.setState({
+        selectedBox: 0,
+        selectedSquare: 0,
+        sudoku: deepClone(solvedSudoku),
+        lockedCells: [[0, 0]]
+    });
+
+    const currentCellValue = solvedSudoku[0][0];
+    const event = new KeyboardEvent('keydown', { key: '1' });
+    window.dispatchEvent(event);
+    app.update();
+
+    expect(app.state().sudoku[0][0]).toEqual(currentCellValue);
 });
 
 describe('Using the arrow keys', () => {
