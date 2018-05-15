@@ -5,7 +5,7 @@ import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';
 
 import { generatePuzzle } from '../lib/generator';
-import { deepEquals, getClueIndices } from '../lib/utils/array';
+import { deepClone, deepEquals, getClueIndices } from '../lib/utils/array';
 import { circularPositionMap } from '../lib/utils/transform';
 
 class App extends Component {
@@ -51,6 +51,8 @@ class App extends Component {
 
         if (/[1-9]/.test(key) && !isLockedCell) {
             this.insertValue(key);
+        } else if (key === 'Backspace' && !isLockedCell) {
+            this.deleteValue();
         } else if (key === 'ArrowUp') {
             row = row === 0 ? row : row - 1;
         } else if (key === 'ArrowLeft') {
@@ -74,10 +76,17 @@ class App extends Component {
     }
 
     insertValue (value) {
-        const nextValues = this.state.sudoku.slice();
+        const nextValues = deepClone(this.state.sudoku);
         const relevantValue = value[value.length - 1];
         const { selectedBox: box, selectedSquare: square } = this.state;
         nextValues[box][square] = Number(relevantValue);
+        this.setState({ sudoku: nextValues });
+    }
+
+    deleteValue () {
+        const nextValues = deepClone(this.state.sudoku);
+        const { selectedBox: box, selectedSquare: square } = this.state;
+        nextValues[box][square] = '';
         this.setState({ sudoku: nextValues });
     }
 
