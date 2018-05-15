@@ -7,6 +7,7 @@ const {
     shuffleArray,
     getSmallestClueSet,
     deepEquals,
+    deepClone,
     arrayExcludingElement
 } = require('../../../lib/utils/array');
 import { sudoku, solvedSudoku } from '../../sudokus.json';
@@ -152,6 +153,18 @@ describe('Array util functions', () => {
 
         it('returns false when arrays are not in the same position', () => {
             expect(deepEquals([[1]], [1])).toBe(false);
+        });
+    });
+
+    describe('deep cloning', () => {
+        it('should not return a shallow copy', () => {
+            const array = [1, [2], 3];
+            expect(deepClone(array)).not.toBe(array);
+        });
+
+        it('should return a deeply copied equivalent array', () => {
+            const array = [1, [2], 3];
+            expect(deepClone(array)).toEqual(array);
         });
     });
 

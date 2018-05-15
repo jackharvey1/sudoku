@@ -27,7 +27,7 @@ function pickRandomClue (sudoku) {
 }
 
 function removeMirroredCluePair (sudoku) {
-    const sudokuCopy = JSON.parse(JSON.stringify(sudoku));
+    const sudokuCopy = deepClone(sudoku);
 
     const [firstRandomRow, firstRandomColumn] = pickRandomClue(sudokuCopy);
     const [secondRandomRow, secondRandomColumn] = mirrorCoordinates(firstRandomRow, firstRandomColumn);
@@ -80,6 +80,14 @@ function deepEquals (firstArray, secondArray) {
     return true;
 }
 
+function deepClone (array) {
+    return array.map(element =>
+        Array.isArray(element)
+            ? deepClone(element)
+            : element
+    );
+}
+
 const arrayExcludingElement = (array, index) =>
     [
         ...array.slice(0, index),
@@ -95,5 +103,6 @@ export {
     shuffleArray,
     getSmallestClueSet,
     deepEquals,
+    deepClone,
     arrayExcludingElement
 };

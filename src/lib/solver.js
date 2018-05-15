@@ -1,6 +1,6 @@
 import { circularPositionMap, circularTransform, getColumn } from './utils/transform';
 import { getPossibles } from './utils/possibles';
-import { arrayExcludingElement, getSmallestClueSet } from './utils/array';
+import { arrayExcludingElement, getSmallestClueSet, deepClone } from './utils/array';
 import { validateSudoku, isSolved } from './utils/validate';
 
 function solve (sudokuAsRows, difficultyTarget = 600) {
@@ -37,7 +37,7 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
                 branchingDifficulty += possiblesMap[row][column].length * 100;
 
                 possiblesMap[row][column].forEach(possible => {
-                    const nextNode = JSON.parse(JSON.stringify(sudokuNode));
+                    const nextNode = deepClone(sudokuNode);
                     nextNode[row][column] = possible;
                     stack.push(nextNode);
                 });

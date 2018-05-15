@@ -3,7 +3,8 @@ import { getPossibles } from './utils/possibles';
 import {
     shuffleArray,
     getClueCount,
-    removeMirroredCluePair
+    removeMirroredCluePair,
+    deepClone
 } from './utils/array';
 import { solve } from './solver';
 
@@ -48,7 +49,7 @@ function generateFilledGrid () {
 
         if (boxNumber < 9 && cellNumber < 9 && candidates.length) {
             candidates.forEach(candidate => {
-                const nextSudokuNode = JSON.parse(JSON.stringify(sudokuNode));
+                const nextSudokuNode = deepClone(sudokuNode);
                 nextSudokuNode[boxNumber][cellNumber] = candidate;
                 stack.push(nextSudokuNode);
             });
