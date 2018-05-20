@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders the Sudoku component as intended 1`] = `
-<div
-  className="Sudoku"
->
-  <div
-    className="Row"
-  >
+<div>
+  <styled.div>
     <Box
       box={0}
       lockedCells={undefined}
@@ -67,10 +63,8 @@ exports[`renders the Sudoku component as intended 1`] = `
         ]
       }
     />
-  </div>
-  <div
-    className="Row"
-  >
+  </styled.div>
+  <styled.div>
     <Box
       box={3}
       lockedCells={undefined}
@@ -131,10 +125,8 @@ exports[`renders the Sudoku component as intended 1`] = `
         ]
       }
     />
-  </div>
-  <div
-    className="Row"
-  >
+  </styled.div>
+  <styled.div>
     <Box
       box={6}
       lockedCells={undefined}
@@ -195,6 +187,6 @@ exports[`renders the Sudoku component as intended 1`] = `
         ]
       }
     />
-  </div>
+  </styled.div>
 </div>
 `;

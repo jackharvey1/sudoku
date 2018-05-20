@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Box from './box';
-import '../sudoku.css';
 
+const Row = styled.div`
+    display: flex;
+`;
 class Sudoku extends Component {
     render () {
         return (
-            <div className="Sudoku">
-                <div className="Row">
+            <div>
+                <Row>
                     {this.renderBox(0)}
                     {this.renderBox(1)}
                     {this.renderBox(2)}
-                </div>
-                <div className="Row">
+                </Row>
+                <Row>
                     {this.renderBox(3)}
                     {this.renderBox(4)}
                     {this.renderBox(5)}
-                </div>
-                <div className="Row">
+                </Row>
+                <Row>
                     {this.renderBox(6)}
                     {this.renderBox(7)}
                     {this.renderBox(8)}
-                </div>
+                </Row>
             </div>
         );
     }

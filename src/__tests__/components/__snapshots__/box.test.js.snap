@@ -1,58 +1,168 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders the Box component as intended 1`] = `
+.c3 {
+  padding: 4px;
+  display: inline-block;
+}
+
+.c2 {
+  background-color: rgba(0,66,99,0.5);
+  font-weight: normal;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgb(64,64,64);
+}
+
+.c4 {
+  background-color: rgba(255,255,255,1);
+  font-weight: bold;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgb(64,64,64);
+}
+
+.c5 {
+  background-color: rgba(255,255,255,1);
+  font-weight: normal;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgb(64,64,64);
+}
+
+.c0 {
+  border: 1px solid #000000;
+}
+
+.c1 {
+  display: table;
+}
+
 <div
-  className="Box"
+  className="c0"
 >
   <div
-    className="Box-row"
+    className="c1"
   >
     <div
-      className="Square Square--selected"
+      className="c2"
       onClick={[Function]}
+      value="1"
     >
-      1
+      <p
+        className="c3"
+      >
+        1
+      </p>
     </div>
     <div
-      className="Square Square--locked"
+      className="c4"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
   </div>
   <div
-    className="Box-row"
+    className="c1"
   >
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
   </div>
   <div
-    className="Box-row"
+    className="c1"
   >
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
     <div
-      className="Square"
+      className="c5"
       onClick={[Function]}
-    />
+      value=""
+    >
+      <p
+        className="c3"
+      >
+        
+      </p>
+    </div>
   </div>
 </div>
 `;
