@@ -15,6 +15,7 @@ it('renders the Box component as intended', () => {
         lockedCells={[[0, 1]]}
         selectedBox={0}
         selectedSquare={0}
+        onClick={() => null}
     />);
     const output = renderer.getRenderOutput();
     expect(output).toMatchSnapshot();

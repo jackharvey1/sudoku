@@ -2,56 +2,90 @@
 
 exports[`renders the Box component as intended 1`] = `
 <div
-  className="Box"
+  className="css-vkhxgo"
 >
   <div
-    className="Box-row"
+    className="css-sjhpqe"
   >
-    <div
-      className="Square Square--selected"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={true}
       onClick={[Function]}
-    >
-      1
-    </div>
-    <div
-      className="Square Square--locked"
-      onClick={[Function]}
+      square={0}
+      value="1"
     />
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={true}
+      isSelected={false}
       onClick={[Function]}
+      square={1}
+      value=""
+    />
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
+      onClick={[Function]}
+      square={2}
+      value=""
     />
   </div>
   <div
-    className="Box-row"
+    className="css-sjhpqe"
   >
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={3}
+      value=""
     />
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={4}
+      value=""
     />
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={5}
+      value=""
     />
   </div>
   <div
-    className="Box-row"
+    className="css-sjhpqe"
   >
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={6}
+      value=""
     />
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={7}
+      value=""
     />
-    <div
-      className="Square"
+    <Square
+      box={0}
+      isLocked={false}
+      isSelected={false}
       onClick={[Function]}
+      square={8}
+      value=""
     />
   </div>
 </div>

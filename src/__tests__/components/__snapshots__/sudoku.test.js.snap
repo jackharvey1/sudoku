@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders the Sudoku component as intended 1`] = `
-<div
-  className="Sudoku"
->
+<div>
   <div
-    className="Row"
+    className="css-1mzzuk6"
   >
     <Box
       box={0}
@@ -69,7 +67,7 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
   </div>
   <div
-    className="Row"
+    className="css-1mzzuk6"
   >
     <Box
       box={3}
@@ -133,7 +131,7 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
   </div>
   <div
-    className="Row"
+    className="css-1mzzuk6"
   >
     <Box
       box={6}

@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
+import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 import Box from './box';
-import '../sudoku.css';
 
+const rowClass = css`
+    display: flex;
+`;
 class Sudoku extends Component {
     render () {
         return (
-            <div className="Sudoku">
-                <div className="Row">
+            <div>
+                <div className={rowClass}>
                     {this.renderBox(0)}
                     {this.renderBox(1)}
                     {this.renderBox(2)}
                 </div>
-                <div className="Row">
+                <div className={rowClass}>
                     {this.renderBox(3)}
                     {this.renderBox(4)}
                     {this.renderBox(5)}
                 </div>
-                <div className="Row">
+                <div className={rowClass}>
                     {this.renderBox(6)}
                     {this.renderBox(7)}
                     {this.renderBox(8)}

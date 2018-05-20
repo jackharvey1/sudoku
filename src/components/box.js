@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
+import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
+import Square from './square';
 import { deepEquals } from '../lib/utils/array';
+
+const boxClass = css`
+    border: 1px solid #000000;
+`;
+
+const boxRowClass = css`
+    display: table;
+`;
 
 class Box extends Component {
     render () {
         return (
-            <div className="Box">
-                <div className="Box-row">
+            <div className={boxClass}>
+                <div className={boxRowClass}>
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
                 </div>
-                <div className="Box-row">
+                <div className={boxRowClass}>
                     {this.renderSquare(3)}
                     {this.renderSquare(4)}
                     {this.renderSquare(5)}
                 </div>
-                <div className="Box-row">
+                <div className={boxRowClass}>
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
@@ -25,27 +35,26 @@ class Box extends Component {
         );
     }
 
-    renderSquare(square) {
-        const className = this.getClassName(square);
-        return (
-            <div
-                className={className}
-                onClick={() => this.props.onClick(this.props.box, square)}
-            >
-                {this.props.values[square]}
-            </div>
+    renderSquare (square) {
+        return (<Square
+            value={this.props.values[square]}
+            onClick={this.props.onClick}
+            box={this.props.box}
+            square={square}
+            isSelected={this.isSelectedSquare(square)}
+            isLocked={this.isLocked(square)}
+        />);
+    }
+
+    isLocked (square) {
+        return this.props.lockedCells.some(lockedCell =>
+            deepEquals(lockedCell, [this.props.box, square])
         );
     }
 
-    getClassName (square) {
-        const isSelected = this.props.selectedBox === this.props.box &&
+    isSelectedSquare (square) {
+        return this.props.selectedBox === this.props.box &&
             this.props.selectedSquare === square;
-        const isLocked = this.props.lockedCells.some(lockedCell =>
-            deepEquals(lockedCell, [this.props.box, square])
-        );
-        const selectedClass = isSelected ? ' Square--selected' : '';
-        const lockedClass = isLocked ? ' Square--locked' : '';
-        return `Square${selectedClass}${lockedClass}`;
     }
 
     static get propTypes() {
