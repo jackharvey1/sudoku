@@ -54,11 +54,12 @@ function shuffleArray (array) {
 }
 
 function getSmallestClueSet (array) {
-    const flattenedIndex = [].concat(...array).reduce((smallest, array, index) =>
-        array.length > 1 && (!smallest || smallest.array.length > array.length)
-            ? { array, index }
-            : smallest
-        , null).index;
+    const flattenedIndex = [].concat(...array)
+        .reduce((smallest, array, index) =>
+            array.length > 1 && (!smallest || smallest.array.length > array.length)
+                ? { array, index }
+                : smallest
+            , null).index;
 
     return [Math.floor(flattenedIndex / 9), flattenedIndex % 9];
 }

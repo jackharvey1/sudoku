@@ -1,6 +1,6 @@
 import { circularPositionMap, circularTransform, getColumn } from './utils/transform';
 import { getPossibles } from './utils/possibles';
-import { arrayExcludingElement, getSmallestClueSet, deepClone } from './utils/array';
+import { getClueCount, arrayExcludingElement, getSmallestClueSet, deepClone } from './utils/array';
 import { validateSudoku, isSolved } from './utils/validate';
 
 function solve (sudokuAsRows, difficultyTarget = 600) {
@@ -20,9 +20,9 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
 
         const possiblesMap = getRestrictedPossiblesMap(sudokuNode);
 
-        const requiresBacktracking = !possiblesMap.some(possiblesRow =>
-            possiblesRow.some(cellPossibles => cellPossibles.length === 1)
-        );
+        const requiresBacktracking = !hasNakedSingle(possiblesMap);
+        const hasPossibles = getClueCount(possiblesMap) > 0;
+        const isValid = validateSudoku(sudokuNode);
 
         if (branchingDifficulty > difficultyTarget) {
             return {
@@ -32,7 +32,7 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
         }
 
         if (requiresBacktracking) {
-            if (validateSudoku(sudokuNode)) {
+            if (isValid && hasPossibles) {
                 const [row, column] = getSmallestClueSet(possiblesMap);
                 branchingDifficulty += possiblesMap[row][column].length * 100;
 
@@ -55,6 +55,12 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
     }
 }
 
+function hasNakedSingle (possiblesMap) {
+    return possiblesMap.some(possiblesRow =>
+        possiblesRow.some(cellPossibles => cellPossibles.length === 1)
+    );
+}
+
 function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
     const { major: boxNumber } = circularPositionMap(rowNumber, columnNumber);
     const possiblesInBox = circularTransform(possibles)[boxNumber];
@@ -63,8 +69,8 @@ function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
     const relevantPossibles = possiblesOnRow[columnNumber];
 
     for (let j = 0; j < relevantPossibles.length; j++) {
-        const mappedPos = (((rowNumber % 3) * 3) + (columnNumber % 3));
-        const boxExcludingThisElement = arrayExcludingElement(possiblesInBox, mappedPos);
+        const { minor: square } = circularPositionMap(rowNumber, columnNumber);
+        const boxExcludingThisElement = arrayExcludingElement(possiblesInBox, square);
         const columnExcludingThisElement = arrayExcludingElement(possiblesOnColumn, rowNumber);
         const rowExcludingThisElement = arrayExcludingElement(possiblesOnRow, columnNumber);
 
