@@ -1,19 +1,12 @@
 import React from 'react';
 import App from '../../components/app';
 import Renderer from 'react-test-renderer';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import { mount } from 'enzyme';
 import { emptySudoku, solvedSudoku } from '../sudokus.json';
 import { generatePuzzle } from '../../lib/generator';
 import { deepClone } from '../../lib/utils/array.js';
 
 jest.mock('../../lib/generator');
-
-let shallowRenderer;
-
-beforeEach(() => {
-    shallowRenderer = new ShallowRenderer();
-});
 
 generatePuzzle.mockImplementation(() => ({
     sudoku: emptySudoku,
@@ -22,9 +15,8 @@ generatePuzzle.mockImplementation(() => ({
 }));
 
 it('renders the App component as intended', () => {
-    shallowRenderer.render(<App />);
-    const output = shallowRenderer.getRenderOutput();
-    expect(output).toMatchSnapshot();
+    const testRenderer = Renderer.create(<App />);
+    expect(testRenderer.toJSON()).toMatchSnapshot();
 });
 
 it('resets to a valid state', () => {
@@ -48,11 +40,11 @@ it('returns null when there\'s no sudoku set in the state', () => {
 });
 
 it('displays the win message when the sudoku is solved', () => {
-    const testRenderer = Renderer.create(<App />);
-    testRenderer.getInstance().setState({
+    const app = mount(<App />);
+    app.setState({
         sudoku: deepClone(solvedSudoku)
     });
-    expect(testRenderer.toJSON()).toMatchSnapshot();
+    expect(app.find('WinMessage')).toHaveLength(1);
 });
 
 it('casts to a number and inputs into the correct square', () => {
@@ -104,11 +96,10 @@ it('does not allow other inputs', () => {
 
 it('highlights a square when clicked', () => {
     const app = mount(<App />);
-    const square = app.find('.Square').at(0);
 
-    square.simulate('click');
+    app.find('Square').at(0).simulate('click');
 
-    expect(square.render().hasClass('Square--selected')).toBe(true);
+    expect(app.find('Square').at(0).props().isSelected).toBe(true);
 });
 
 it('does not allow input into locked cells', () => {
@@ -181,11 +172,10 @@ describe('Using the arrow keys', () => {
                 selectedSquare: 0
             });
 
-            const targetSquare = app.find('.Square').at(0);
             const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
             window.dispatchEvent(event);
 
-            expect(targetSquare.render().hasClass('Square--selected')).toBe(true);
+            expect(app.find('Square').at(0).props().isSelected).toBe(true);
         });
 
         it('does not move beyond the right-most column', () => {
@@ -194,11 +184,10 @@ describe('Using the arrow keys', () => {
                 selectedSquare: 2
             });
 
-            const targetSquare = app.find('.Square').at(20);
             const event = new KeyboardEvent('keydown', { key: 'ArrowRight' });
             window.dispatchEvent(event);
 
-            expect(targetSquare.render().hasClass('Square--selected')).toBe(true);
+            expect(app.find('Square').at(20).props().isSelected).toBe(true);
         });
 
         it('does not move beyond the left-most column', () => {
@@ -207,11 +196,10 @@ describe('Using the arrow keys', () => {
                 selectedSquare: 0
             });
 
-            const targetSquare = app.find('.Square').at(0);
             const event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
             window.dispatchEvent(event);
 
-            expect(targetSquare.render().hasClass('Square--selected')).toBe(true);
+            expect(app.find('Square').at(0).props().isSelected).toBe(true);
         });
 
         it('does not move below the bottom-most row', () => {
@@ -220,11 +208,10 @@ describe('Using the arrow keys', () => {
                 selectedSquare: 6
             });
 
-            const targetSquare = app.find('.Square').at(60);
             const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
             window.dispatchEvent(event);
 
-            expect(targetSquare.render().hasClass('Square--selected')).toBe(true);
+            expect(app.find('Square').at(60).props().isSelected).toBe(true);
         });
 
         it('does not move below the bottom-most row', () => {
@@ -233,11 +220,10 @@ describe('Using the arrow keys', () => {
                 selectedSquare: 0
             });
 
-            const targetSquare = app.find('.Square').at(0);
             const event = new KeyboardEvent('keydown', { key: 'Space' });
             window.dispatchEvent(event);
 
-            expect(targetSquare.render().hasClass('Square--selected')).toBe(true);
+            expect(app.find('Square').at(0).props().isSelected).toBe(true);
         });
     });
 });
