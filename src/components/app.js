@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { css } from 'react-emotion';
 import Sudoku from './sudoku';
 import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';
@@ -7,6 +7,19 @@ import WinMessage from './win-message';
 import { generatePuzzle } from '../lib/generator';
 import { deepClone, deepEquals, getClueIndices } from '../lib/utils/array';
 import { circularPositionMap } from '../lib/utils/transform';
+
+const appClass = css`
+    width: 294px;
+    font-family: sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+const difficultyMessageClass = css`
+    margin-bottom: 8px;
+`;
 
 class App extends Component {
     constructor () {
@@ -20,8 +33,9 @@ class App extends Component {
             const isSolved = deepEquals(this.state.solution, this.state.sudoku);
 
             return (
-                <div className="App">
+                <div className={appClass}>
                     <ListenerWrapper onKeyPress={this.handleKeyDown.bind(this)}>
+                        <div className={difficultyMessageClass}>Difficulty: {this.state.difficulty}</div>
                         <WinMessage
                             solved={isSolved}
                             resetFunction={this.reset.bind(this)}
@@ -33,7 +47,6 @@ class App extends Component {
                             selectedBox={this.state.selectedBox}
                             selectedSquare={this.state.selectedSquare}
                         />
-                        <p>Difficulty: {this.state.difficulty}</p>
                     </ListenerWrapper>
                 </div>
             );
