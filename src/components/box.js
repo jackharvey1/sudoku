@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 import Square from './square';
-import { deepEquals } from '../lib/utils/array';
+import { deepEquals } from '../public/js/utils/array';
 
 const boxClass = css`
     border: 1px solid #000000;

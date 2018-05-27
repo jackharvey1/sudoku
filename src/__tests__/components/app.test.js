@@ -3,10 +3,10 @@ import App from '../../components/app';
 import Renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 import { emptySudoku, solvedSudoku } from '../sudokus.json';
-import { generatePuzzle } from '../../lib/generator';
-import { deepClone } from '../../lib/utils/array.js';
+import { generatePuzzle } from '../../public/js/generator';
+import { deepClone } from '../../public/js/utils/array.js';
 
-jest.mock('../../lib/generator');
+jest.mock('../../public/js/generator');
 
 generatePuzzle.mockImplementation(() => ({
     sudoku: emptySudoku,
