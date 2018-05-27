@@ -1,4 +1,4 @@
-const {
+import {
     getClueCount,
     getClueIndices,
     pickRandomClue,
@@ -9,7 +9,7 @@ const {
     deepEquals,
     deepClone,
     arrayExcludingElement
-} = require('../../../public/js/utils/array');
+} from '../../../public/js/utils/array';
 import { sudoku, solvedSudoku } from '../../sudokus.json';
 
 expect.extend({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 
@@ -28,24 +28,20 @@ const buttonClass = css`
     margin: 0 auto;
     display: block;
 `;
-class WinMessage extends Component {
-    render () {
-        return this.props.solved
-            ? (<div className={backgroundClass}>
-                <div className={containerClass}>
-                    <p className={textClass}>Solved!</p>
-                    <button className={buttonClass}onClick={this.props.resetFunction}>Again?</button>
-                </div>
-            </div>)
-            : null;
-    }
 
-    static get propTypes() {
-        return {
-            solved: PropTypes.bool,
-            resetFunction: PropTypes.func
-        };
-    }
-}
+const WinMessage = props =>
+    props.solved
+        ? (<div className={backgroundClass}>
+            <div className={containerClass}>
+                <p className={textClass}>Solved!</p>
+                <button className={buttonClass}onClick={props.resetFunction}>Again?</button>
+            </div>
+        </div>)
+        : null;
+
+WinMessage.propTypes = {
+    solved: PropTypes.bool,
+    resetFunction: PropTypes.func
+};
 
 export default WinMessage;
