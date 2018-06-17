@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button provider renders as intended 1`] = `
+<button
+  className="css-1kaq0eq"
+  onClick={[Function]}
+>
+  <p>
+    Test
+  </p>
+</button>
+`;

@@ -3,6 +3,7 @@ import { css } from 'react-emotion';
 import Sudoku from './sudoku';
 import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';
+import ResetButton from './buttons/reset';
 
 import { generatePuzzle } from '../public/js/generator';
 import { deepClone, deepEquals, getClueIndices } from '../public/js/utils/array';
@@ -47,6 +48,7 @@ class App extends Component {
                             selectedBox={this.state.selectedBox}
                             selectedSquare={this.state.selectedSquare}
                         />
+                        <ResetButton onClick={this.reset.bind(this)} />
                     </ListenerWrapper>
                 </div>
             );
