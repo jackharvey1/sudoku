@@ -8,21 +8,21 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
     let branchingDifficulty = 0;
 
     while (stack.length) {
-        const sudokuNode = stack[stack.length - 1];
+        const currentNode = stack[stack.length - 1];
         stack.pop();
 
-        if (isSolved(sudokuNode)) {
+        if (isSolved(currentNode)) {
             return {
                 branchingDifficulty: branchingDifficulty,
-                sudoku: sudokuNode
+                sudoku: currentNode
             };
         }
 
-        const possiblesMap = getRestrictedPossiblesMap(sudokuNode);
+        const possiblesMap = getRestrictedPossiblesMap(currentNode);
 
-        const requiresBacktracking = !hasNakedSingle(possiblesMap);
+        const hasNoNakedSingles = !hasNakedSingle(possiblesMap);
         const hasPossibles = getClueCount(possiblesMap) > 0;
-        const isValid = validateSudoku(sudokuNode);
+        const isValid = validateSudoku(currentNode);
 
         if (branchingDifficulty > difficultyTarget) {
             return {
@@ -31,28 +31,36 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
             };
         }
 
-        if (requiresBacktracking) {
+        if (hasNoNakedSingles) {
             if (isValid && hasPossibles) {
-                const [row, column] = getSmallestClueSet(possiblesMap);
-                branchingDifficulty += possiblesMap[row][column].length * 100;
-
-                possiblesMap[row][column].forEach(possible => {
-                    const nextNode = deepClone(sudokuNode);
-                    nextNode[row][column] = possible;
-                    stack.push(nextNode);
-                });
+                branchingDifficulty += 100;
+                pushPossiblesOntoStack(stack, currentNode, possiblesMap);
             }
         } else {
-            const nextNode = sudokuNode.map((row, i) =>
-                row.map((item, j) =>
-                    possiblesMap[i][j].length === 1 && item === ''
-                        ? possiblesMap[i][j][0]
-                        : item
-                )
-            );
+            const nextNode = flattenNakedSingles(currentNode, possiblesMap);
             stack.push(nextNode);
         }
     }
+}
+
+function flattenNakedSingles (currentNode, possiblesMap) {
+    return currentNode.map((row, i) =>
+        row.map((item, j) =>
+            possiblesMap[i][j].length === 1 && item === ''
+                ? possiblesMap[i][j][0]
+                : item
+        )
+    );
+}
+
+function pushPossiblesOntoStack (stack, currentNode, possiblesMap) {
+    const [row, column] = getSmallestClueSet(possiblesMap);
+
+    possiblesMap[row][column].forEach(possible => {
+        const nextNode = deepClone(currentNode);
+        nextNode[row][column] = possible;
+        stack.push(nextNode);
+    });
 }
 
 function hasNakedSingle (possiblesMap) {
@@ -70,21 +78,13 @@ function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
 
     for (let j = 0; j < relevantPossibles.length; j++) {
         const { minor: square } = circularPositionMap(rowNumber, columnNumber);
-        const boxExcludingThisElement = arrayExcludingElement(possiblesInBox, square);
-        const columnExcludingThisElement = arrayExcludingElement(possiblesOnColumn, rowNumber);
-        const rowExcludingThisElement = arrayExcludingElement(possiblesOnRow, columnNumber);
+        const boxExcludingThisElement = arrayExcludingElement(possiblesInBox, square).join();
+        const columnExcludingThisElement = arrayExcludingElement(possiblesOnColumn, rowNumber).join();
+        const rowExcludingThisElement = arrayExcludingElement(possiblesOnRow, columnNumber).join();
 
-        const isOnlyPossibleInBox = !boxExcludingThisElement.some(possiblesCell =>
-            possiblesCell.includes(relevantPossibles[j])
-        );
-
-        const isOnlyPossibleOnRow = !rowExcludingThisElement.some(possiblesCell =>
-            possiblesCell.includes(relevantPossibles[j])
-        );
-
-        const isOnlyPossibleOnColumn = !columnExcludingThisElement.some(possiblesCell =>
-            possiblesCell.includes(relevantPossibles[j])
-        );
+        const isOnlyPossibleInBox = !boxExcludingThisElement.includes(relevantPossibles[j]);
+        const isOnlyPossibleOnRow = !rowExcludingThisElement.includes(relevantPossibles[j]);
+        const isOnlyPossibleOnColumn = !columnExcludingThisElement.includes(relevantPossibles[j]);
 
         if (isOnlyPossibleOnRow || isOnlyPossibleOnColumn || isOnlyPossibleInBox) {
             return [relevantPossibles[j]];
