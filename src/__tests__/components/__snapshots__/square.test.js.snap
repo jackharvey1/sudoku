@@ -1,12 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Square component renders as expected in basic state 1`] = `
+exports[`renders as expected in basic state 1`] = `
 <div
-  box={0}
   className="css-iz9zke"
   onClick={[Function]}
-  square={0}
-  value={1}
 >
   <p
     className="css-1h92lle"
@@ -16,13 +13,10 @@ exports[`Square component renders as expected in basic state 1`] = `
 </div>
 `;
 
-exports[`Square component renders with background when selected 1`] = `
+exports[`renders with a light background when on the same row 1`] = `
 <div
-  box={0}
   className="css-9v78r0"
   onClick={[Function]}
-  square={0}
-  value={1}
 >
   <p
     className="css-1h92lle"
@@ -32,13 +26,23 @@ exports[`Square component renders with background when selected 1`] = `
 </div>
 `;
 
-exports[`Square component renders with bold text when locked 1`] = `
+exports[`renders with background when selected 1`] = `
 <div
-  box={0}
+  className="css-9v78r0"
+  onClick={[Function]}
+>
+  <p
+    className="css-1h92lle"
+  >
+    1
+  </p>
+</div>
+`;
+
+exports[`renders with bold text when locked 1`] = `
+<div
   className="css-14zxudu"
   onClick={[Function]}
-  square={0}
-  value={1}
 >
   <p
     className="css-1h92lle"

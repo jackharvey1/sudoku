@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Win message component renders the win message as expected when sudoku is solved 1`] = `
+exports[`renders the win message as expected when sudoku is solved 1`] = `
 <div
   className="css-1w4wrbu"
 >
@@ -22,4 +22,4 @@ exports[`Win message component renders the win message as expected when sudoku i
 </div>
 `;
 
-exports[`Win message component returns null when the sudoku is not solved 1`] = `null`;
+exports[`returns null when the sudoku is not solved 1`] = `null`;

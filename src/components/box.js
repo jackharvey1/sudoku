@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 import Square from './square';
-import { deepEquals } from '../public/js/utils/array';
+import { circularPositionMap } from '../public/js/utils/transform';
 
 const boxClass = css`
     border: 1px solid #000000;
@@ -42,19 +42,30 @@ class Box extends Component {
             box={this.props.box}
             square={square}
             isSelected={this.isSelectedSquare(square)}
-            isLocked={this.isLocked(square)}
+            isLocked={this.isLockedSquare(square)}
+            isRelevant={this.isRelevantSquare(square)}
         />);
     }
 
-    isLocked (square) {
-        return this.props.lockedCells.some(lockedCell =>
-            deepEquals(lockedCell, [this.props.box, square])
-        );
+    isLockedSquare (square) {
+        return this.props.lockedCells.includes(square);
     }
 
     isSelectedSquare (square) {
         return this.props.selectedBox === this.props.box &&
             this.props.selectedSquare === square;
+    }
+
+    isRelevantSquare (square) {
+        if (this.props.selectedBox !== null && this.props.selectedSquare !== null) {
+            const { major: selectedRow, minor: selectedColumn } = circularPositionMap(this.props.selectedBox, this.props.selectedSquare);
+            const { major: row, minor: column } = circularPositionMap(this.props.box, square);
+            return this.props.selectedBox === this.props.box ||
+                selectedRow === row ||
+                selectedColumn === column;
+        }
+
+        return false;
     }
 
     static get propTypes() {

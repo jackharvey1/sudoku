@@ -21,11 +21,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -34,11 +31,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -47,11 +41,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -64,11 +55,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -77,11 +65,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -90,11 +75,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -107,11 +89,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -120,11 +99,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -133,11 +109,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={0}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -154,11 +127,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -167,11 +137,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -180,11 +147,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -197,11 +161,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -210,11 +171,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -223,11 +181,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -240,11 +195,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -253,11 +205,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -266,11 +215,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={1}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -287,11 +233,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -300,11 +243,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -313,11 +253,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -330,11 +267,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -343,11 +277,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -356,11 +287,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -373,11 +301,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -386,11 +311,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -399,11 +321,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={2}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -424,11 +343,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -437,11 +353,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -450,11 +363,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -467,11 +377,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -480,11 +387,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -493,11 +397,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -510,11 +411,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -523,11 +421,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -536,11 +431,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={3}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -557,11 +449,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -570,11 +459,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -583,11 +469,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -600,11 +483,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -613,11 +493,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -626,11 +503,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -643,11 +517,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -656,11 +527,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -669,11 +537,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={4}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -690,11 +555,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -703,11 +565,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -716,11 +575,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -733,11 +589,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -746,11 +599,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -759,11 +609,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -776,11 +623,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -789,11 +633,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -802,11 +643,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={5}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -827,11 +665,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -840,11 +675,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -853,11 +685,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -870,11 +699,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -883,11 +709,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -896,11 +719,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -913,11 +733,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -926,11 +743,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -939,11 +753,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={6}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -960,11 +771,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -973,11 +781,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -986,11 +791,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1003,11 +805,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1016,11 +815,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1029,11 +825,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1046,11 +839,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1059,11 +849,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1072,11 +859,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={7}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1093,11 +877,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={0}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1106,11 +887,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={1}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1119,11 +897,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={2}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1136,11 +911,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={3}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1149,11 +921,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={4}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1162,11 +931,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={5}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1179,11 +945,8 @@ exports[`renders the App component as intended 1`] = `
           className="css-sjhpqe"
         >
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={6}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1192,11 +955,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={7}
-            value=""
           >
             <p
               className="css-1h92lle"
@@ -1205,11 +965,8 @@ exports[`renders the App component as intended 1`] = `
             </p>
           </div>
           <div
-            box={8}
             className="css-iz9zke"
             onClick={[Function]}
-            square={8}
-            value=""
           >
             <p
               className="css-1h92lle"

@@ -30,11 +30,12 @@ class Sudoku extends Component {
     }
 
     renderBox (i) {
+        const lockedCellsInBox = this.props.lockedCells[i] || [];
         return (
             <Box
                 box={i}
                 values={this.props.grid[i]}
-                lockedCells={this.props.lockedCells}
+                lockedCells={lockedCellsInBox}
                 onClick={this.props.selectSquare}
                 selectedBox={this.props.selectedBox}
                 selectedSquare={this.props.selectedSquare}
@@ -44,8 +45,8 @@ class Sudoku extends Component {
 
     static get propTypes() {
         return {
-            lockedCells: PropTypes.array,
-            grid: PropTypes.array,
+            lockedCells: PropTypes.array.isRequired,
+            grid: PropTypes.array.isRequired,
             selectSquare: PropTypes.func,
             selectedBox: PropTypes.number,
             selectedSquare: PropTypes.number
