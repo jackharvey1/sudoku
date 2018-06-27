@@ -39,14 +39,6 @@ it('returns null when there\'s no sudoku set in the state', () => {
     expect(testRenderer.toJSON()).toBe(null);
 });
 
-it('displays the win message when the sudoku is solved', () => {
-    const app = mount(<App />);
-    app.setState({
-        sudoku: deepClone(solvedSudoku)
-    });
-    expect(app.find('WinMessage')).toHaveLength(1);
-});
-
 it('casts to a number and inputs into the correct square', () => {
     const app = mount(<App />);
 
@@ -79,7 +71,7 @@ it('deletes a key when backspace is pressed', () => {
     expect(app.state().sudoku[0][0]).toEqual('');
 });
 
-it('does not allow other inputs', () => {
+it('does not allow extraneous inputs', () => {
     const app = mount(<App />);
 
     app.setState({
