@@ -8,9 +8,7 @@ const textClass = css`
 `;
 
 const createSquareClass = props => css`
-    background-color: ${props.isSelected
-        ? 'rgba(0, 66, 99, 0.5);'
-        : 'rgba(255, 255, 255, 1);'}
+    background-color: ${getBackgroundColour(props)}
 
     font-weight: ${props.isLocked
         ? 'bold;'
@@ -29,13 +27,19 @@ const createSquareClass = props => css`
     border: 1px solid rgb(64, 64, 64);
 `;
 
+const getBackgroundColour = props => {
+    if (props.isSelected) {
+        return 'rgba(0, 66, 99, 0.5);';
+    } else if (props.isRelevant) {
+        return 'rgba(0, 66, 99, 0.2);';
+    }
+    return 'rgba(255, 255, 255, 1);';
+};
+
 export default function Square (props) {
     return (
         <div
             className={createSquareClass(props)}
-            value={props.value}
-            box={props.box}
-            square={props.square}
             onClick={() => props.onClick(props.box, props.square)}
         >
             <p className={textClass}>
@@ -54,5 +58,6 @@ Square.propTypes = {
     box: PropTypes.number.isRequired,
     square: PropTypes.number.isRequired,
     isSelected: PropTypes.bool.isRequired,
-    isLocked: PropTypes.bool.isRequired
+    isLocked: PropTypes.bool.isRequired,
+    isRelevant: PropTypes.bool.isRequired
 };
