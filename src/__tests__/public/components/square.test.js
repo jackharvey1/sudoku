@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from '../../components/square';
+import Square from '../../../public/components/square';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 let renderer;

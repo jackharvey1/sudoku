@@ -1,15 +1,11 @@
 import React from 'react';
-import ButtonProvider from '../../../components/buttons/button-provider';
+import ResetButton from '../../../../public/components/buttons/reset';
 import Renderer from 'react-test-renderer';
 
 describe('Button provider', () => {
     it('renders as intended', () => {
         const testRenderer = Renderer.create(
-            <ButtonProvider
-                onClick={() => null}
-                icon={() => null}
-                text={"Test"}
-            />
+            <ResetButton onClick={() => null} />
         );
         expect(testRenderer.toJSON()).toMatchSnapshot();
     });

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { injectGlobal } from 'react-emotion';
 
-import App from './components/app';
+import App from './public/components/app';
 
 //eslint-disable-next-line no-unused-expressions
 injectGlobal`

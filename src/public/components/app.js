@@ -5,9 +5,9 @@ import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';
 import ResetButton from './buttons/reset';
 
-import { generatePuzzle } from '../public/js/generator';
-import { deepClone, deepEquals, getClueIndices } from '../public/js/utils/array';
-import { circularPositionMap } from '../public/js/utils/transform';
+import { generatePuzzle } from '../js/generator';
+import { deepClone, deepEquals, getClueIndices } from '../js/utils/array';
+import { circularPositionMap } from '../js/utils/transform';
 
 const appClass = css`
     width: 294px;

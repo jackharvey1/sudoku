@@ -1,5 +1,5 @@
 import React from 'react';
-import ListenerWrapper from '../../components/listener-wrapper';
+import ListenerWrapper from '../../../public/components/listener-wrapper';
 import { mount } from 'enzyme';
 
 it('calls the listener on the wrapper when an event is triggered', () => {

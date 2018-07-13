@@ -1,6 +1,6 @@
 import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import WinMessage from '../../components/win-message';
+import WinMessage from '../../../public/components/win-message';
 
 let renderer;
 

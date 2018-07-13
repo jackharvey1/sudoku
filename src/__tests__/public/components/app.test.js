@@ -1,12 +1,12 @@
 import React from 'react';
-import App from '../../components/app';
+import App from '../../../public/components/app';
 import Renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
-import { emptySudoku, solvedSudoku } from '../sudokus.json';
-import { generatePuzzle } from '../../public/js/generator';
-import { deepClone } from '../../public/js/utils/array.js';
+import { emptySudoku, solvedSudoku } from '../../sudokus.json';
+import { generatePuzzle } from '../../../public/js/generator';
+import { deepClone } from '../../../public/js/utils/array.js';
 
-jest.mock('../../public/js/generator');
+jest.mock('../../../public/js/generator');
 
 generatePuzzle.mockImplementation(() => ({
     sudoku: emptySudoku,

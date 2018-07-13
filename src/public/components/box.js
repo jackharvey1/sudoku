@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
 import Square from './square';
-import { circularPositionMap } from '../public/js/utils/transform';
+import { circularPositionMap } from '../js/utils/transform';
 
 const boxClass = css`
     border: 1px solid #000000;
