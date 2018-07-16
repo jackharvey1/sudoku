@@ -9,27 +9,33 @@ exports[`renders the Box component as intended 1`] = `
   >
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={true}
+      isUnderCheck={false}
       onClick={[Function]}
       square={0}
       value="1"
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={1}
       value=""
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={2}
       value=""
@@ -40,27 +46,33 @@ exports[`renders the Box component as intended 1`] = `
   >
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={3}
       value=""
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={4}
       value=""
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={5}
       value=""
@@ -71,27 +83,33 @@ exports[`renders the Box component as intended 1`] = `
   >
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={6}
       value=""
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={7}
       value=""
     />
     <Square
       box={0}
+      isCorrect={false}
       isLocked={false}
       isRelevant={true}
       isSelected={false}
+      isUnderCheck={false}
       onClick={[Function]}
       square={8}
       value=""

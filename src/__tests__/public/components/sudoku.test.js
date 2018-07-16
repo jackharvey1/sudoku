@@ -11,6 +11,8 @@ it('renders the Sudoku component as intended', () => {
         selectSquare={() => {}}
         selectedBox={0}
         selectedSquare={0}
+        isUnderCheck={false}
+        solution={emptySudoku}
     />);
     const output = renderer.getRenderOutput();
     expect(output).toMatchSnapshot();

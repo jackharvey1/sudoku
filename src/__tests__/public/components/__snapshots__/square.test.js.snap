@@ -13,7 +13,20 @@ exports[`renders as expected in basic state 1`] = `
 </div>
 `;
 
-exports[`renders with a light background when on the same row 1`] = `
+exports[`renders with a green background when under check and correct 1`] = `
+<div
+  className="css-vbuhvi"
+  onClick={[Function]}
+>
+  <p
+    className="css-1h92lle"
+  >
+    1
+  </p>
+</div>
+`;
+
+exports[`renders with a light background when relevant 1`] = `
 <div
   className="css-9v78r0"
   onClick={[Function]}
@@ -22,6 +35,19 @@ exports[`renders with a light background when on the same row 1`] = `
     className="css-1h92lle"
   >
     1
+  </p>
+</div>
+`;
+
+exports[`renders with a red background when under check and not correct 1`] = `
+<div
+  className="css-5xyamo"
+  onClick={[Function]}
+>
+  <p
+    className="css-1h92lle"
+  >
+    4
   </p>
 </div>
 `;

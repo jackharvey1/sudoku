@@ -28,6 +28,11 @@ const createSquareClass = props => css`
 `;
 
 const getBackgroundColour = props => {
+    if (props.isUnderCheck) {
+        return props.isCorrect
+            ? 'rgba(0, 255, 0, 0.35);'
+            : 'rgba(255, 0, 0, 0.35);';
+    }
     if (props.isSelected) {
         return 'rgba(0, 66, 99, 0.5);';
     } else if (props.isRelevant) {
@@ -50,14 +55,16 @@ export default function Square (props) {
 }
 
 Square.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    box: PropTypes.number.isRequired,
+    square: PropTypes.number.isRequired,
     value: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number
     ]).isRequired,
-    onClick: PropTypes.func.isRequired,
-    box: PropTypes.number.isRequired,
-    square: PropTypes.number.isRequired,
     isSelected: PropTypes.bool.isRequired,
     isLocked: PropTypes.bool.isRequired,
-    isRelevant: PropTypes.bool.isRequired
+    isRelevant: PropTypes.bool.isRequired,
+    isUnderCheck: PropTypes.bool.isRequired,
+    isCorrect: PropTypes.bool.isRequired
 };

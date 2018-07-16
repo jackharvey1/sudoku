@@ -978,33 +978,283 @@ exports[`renders the App component as intended 1`] = `
       </div>
     </div>
   </div>
-  <button
-    className="css-1kaq0eq"
-    onClick={[Function]}
-  >
-    <svg
-      className="css-1w0ds7r"
-      fill="currentColor"
-      height="1em"
-      preserveAspectRatio="xMidYMid meet"
-      style={
-        Object {
-          "color": undefined,
-          "verticalAlign": "middle",
-        }
-      }
-      viewBox="0 0 40 40"
-      width="1em"
+  <div>
+    <button
+      className="css-mhex0s"
+      onClick={[Function]}
     >
-      <g>
-        <path
-          d="m27.5 27.5l-8.1-8.7h5.8c-0.6-5.1-5-8.8-10.2-8.8-5.5 0-10 4.5-10 10s4.5 10 10 10c2.2 0 4.1-0.6 5.9-1.9l0.4-0.4 3.4 3.6-0.6 0.5c-2.6 2-5.7 3.2-9.1 3.2-7.1 0-13.1-5-14.6-11.6 0-0.1-0.1-0.2-0.1-0.3v-0.2s-0.1-0.2-0.1-0.2v-0.1c0-0.1 0-0.3 0-0.3-0.1-0.5-0.2-1-0.2-1.5v-1.6c0-0.4 0.1-1 0.2-1.5 0 0 0-0.2 0-0.3v-0.1c0 0 0.1 0 0.1-0.1v-0.3c0-0.1 0.1-0.2 0.1-0.3 1.6-6.6 7.5-11.6 14.6-11.6 0.9 0 1.6 0.1 2.4 0.2h0.3c4.5 0.8 8.3 3.7 10.4 7.5 1 1.8 1.7 3.9 1.8 6.1h5.1z"
-        />
-      </g>
-    </svg>
-    <p>
-      Reset
-    </p>
-  </button>
+      <div
+        className="css-1sginf6"
+      >
+        <svg
+          className="css-1w0ds7r"
+          fill="currentColor"
+          height="1em"
+          preserveAspectRatio="xMidYMid meet"
+          style={
+            Object {
+              "color": undefined,
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 40 40"
+          width="1em"
+        >
+          <g>
+            <path
+              d="m27.5 27.5l-8.1-8.7h5.8c-0.6-5.1-5-8.8-10.2-8.8-5.5 0-10 4.5-10 10s4.5 10 10 10c2.2 0 4.1-0.6 5.9-1.9l0.4-0.4 3.4 3.6-0.6 0.5c-2.6 2-5.7 3.2-9.1 3.2-7.1 0-13.1-5-14.6-11.6 0-0.1-0.1-0.2-0.1-0.3v-0.2s-0.1-0.2-0.1-0.2v-0.1c0-0.1 0-0.3 0-0.3-0.1-0.5-0.2-1-0.2-1.5v-1.6c0-0.4 0.1-1 0.2-1.5 0 0 0-0.2 0-0.3v-0.1c0 0 0.1 0 0.1-0.1v-0.3c0-0.1 0.1-0.2 0.1-0.3 1.6-6.6 7.5-11.6 14.6-11.6 0.9 0 1.6 0.1 2.4 0.2h0.3c4.5 0.8 8.3 3.7 10.4 7.5 1 1.8 1.7 3.9 1.8 6.1h5.1z"
+            />
+          </g>
+        </svg>
+        <p>
+          Reset
+        </p>
+      </div>
+    </button>
+    <button
+      className="css-mhex0s"
+      onClick={[Function]}
+    >
+      <div
+        className="css-1sginf6"
+      >
+        <svg
+          className="css-1w0ds7r"
+          fill="currentColor"
+          height="1em"
+          preserveAspectRatio="xMidYMid meet"
+          style={
+            Object {
+              "color": undefined,
+              "verticalAlign": "middle",
+            }
+          }
+          viewBox="0 0 40 40"
+          width="1em"
+        >
+          <g>
+            <path
+              d="m35.8 8.6c0.1 0.2 0.2 0.3 0.2 0.5s-0.1 0.3-0.2 0.4l-19.4 25c-0.2 0.2-0.4 0.5-0.7 0.5s-0.6-0.2-0.8-0.4-11-10.6-11-10.6l-0.2-0.2c-0.1-0.2-0.2-0.4-0.2-0.5s0.1-0.3 0.2-0.4l0.1-0.2c1.1-1.1 3.3-3.4 3.5-3.6s0.3-0.4 0.6-0.4 0.6 0.3 0.8 0.4 6.2 6.1 6.2 6.1l15.6-20c0.2-0.2 0.3-0.2 0.5-0.2s0.4 0.1 0.5 0.2z"
+            />
+          </g>
+        </svg>
+        <p>
+          Check
+        </p>
+      </div>
+    </button>
+  </div>
 </div>
+`;
+
+exports[`resets to a valid state 1`] = `
+Object {
+  "difficulty": Infinity,
+  "isUnderCheck": false,
+  "lockedCells": Array [],
+  "selectedBox": null,
+  "selectedSquare": null,
+  "solution": Array [
+    Array [
+      4,
+      8,
+      3,
+      1,
+      9,
+      7,
+      5,
+      6,
+      2,
+    ],
+    Array [
+      5,
+      6,
+      7,
+      8,
+      2,
+      3,
+      1,
+      4,
+      9,
+    ],
+    Array [
+      1,
+      2,
+      9,
+      4,
+      6,
+      5,
+      8,
+      7,
+      3,
+    ],
+    Array [
+      7,
+      4,
+      2,
+      6,
+      8,
+      9,
+      3,
+      5,
+      1,
+    ],
+    Array [
+      3,
+      5,
+      8,
+      7,
+      4,
+      1,
+      9,
+      2,
+      6,
+    ],
+    Array [
+      6,
+      9,
+      1,
+      3,
+      5,
+      2,
+      4,
+      8,
+      7,
+    ],
+    Array [
+      9,
+      7,
+      6,
+      5,
+      3,
+      4,
+      2,
+      1,
+      8,
+    ],
+    Array [
+      2,
+      1,
+      5,
+      9,
+      7,
+      8,
+      6,
+      3,
+      4,
+    ],
+    Array [
+      8,
+      3,
+      4,
+      2,
+      1,
+      6,
+      7,
+      9,
+      5,
+    ],
+  ],
+  "sudoku": Array [
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+    Array [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ],
+  ],
+}
 `;
