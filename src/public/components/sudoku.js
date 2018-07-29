@@ -30,7 +30,10 @@ class Sudoku extends Component {
     }
 
     renderBox (i) {
-        const lockedCellsInBox = this.props.lockedCells[i] || [];
+        const lockedCellsInBox = this.props.lockedCells
+            .filter(([box]) => box === i)
+            .map(([, cell]) => cell);
+
         return (
             <Box
                 box={i}
