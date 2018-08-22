@@ -7,10 +7,24 @@ exports[`renders the Sudoku component as intended 1`] = `
   >
     <Box
       box={0}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -27,10 +41,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={1}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -47,10 +75,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={2}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -71,10 +113,24 @@ exports[`renders the Sudoku component as intended 1`] = `
   >
     <Box
       box={3}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -91,10 +147,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={4}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -111,10 +181,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={5}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -135,10 +219,24 @@ exports[`renders the Sudoku component as intended 1`] = `
   >
     <Box
       box={6}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -155,10 +253,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={7}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",
@@ -175,10 +287,24 @@ exports[`renders the Sudoku component as intended 1`] = `
     />
     <Box
       box={8}
+      isUnderCheck={false}
       lockedCells={Array []}
       onClick={[Function]}
       selectedBox={0}
       selectedSquare={0}
+      solution={
+        Array [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ]
+      }
       values={
         Array [
           "",

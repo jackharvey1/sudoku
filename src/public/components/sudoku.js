@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'react-emotion';
 import PropTypes from 'prop-types';
+import customPropTypes from '../custom-prop-types';
 import Box from './box';
 
 const rowClass = css`
@@ -37,11 +38,13 @@ class Sudoku extends Component {
         return (
             <Box
                 box={i}
+                onClick={this.props.selectSquare}
                 values={this.props.grid[i]}
                 lockedCells={lockedCellsInBox}
-                onClick={this.props.selectSquare}
                 selectedBox={this.props.selectedBox}
                 selectedSquare={this.props.selectedSquare}
+                isUnderCheck={this.props.isUnderCheck}
+                solution={this.props.solution[i]}
             />
         );
     }
@@ -50,9 +53,11 @@ class Sudoku extends Component {
         return {
             lockedCells: PropTypes.array.isRequired,
             grid: PropTypes.array.isRequired,
-            selectSquare: PropTypes.func,
-            selectedBox: PropTypes.number,
-            selectedSquare: PropTypes.number
+            selectSquare: PropTypes.func.isRequired,
+            selectedBox: customPropTypes.numberOrNull,
+            selectedSquare: customPropTypes.numberOrNull,
+            isUnderCheck: PropTypes.bool.isRequired,
+            solution: PropTypes.array.isRequired
         };
     }
 }

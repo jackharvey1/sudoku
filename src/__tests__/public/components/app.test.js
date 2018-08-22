@@ -23,14 +23,7 @@ it('resets to a valid state', () => {
     const app = mount(<App />);
     app.instance().reset();
     app.update();
-    expect(app.state()).toEqual({
-        sudoku: emptySudoku,
-        solution: deepClone(solvedSudoku),
-        difficulty: Infinity,
-        lockedCells: [],
-        selectedBox: null,
-        selectedSquare: null
-    });
+    expect(app.state()).toMatchSnapshot();
 });
 
 it('returns null when there\'s no sudoku set in the state', () => {
@@ -86,12 +79,20 @@ it('does not allow extraneous inputs', () => {
     expect(app.state().sudoku[5][5]).toEqual('');
 });
 
-it('highlights a square when clicked', () => {
+it('sets a square\'s state to isSelected when clicked', () => {
     const app = mount(<App />);
 
     app.find('Square').at(0).simulate('click');
 
     expect(app.find('Square').at(0).props().isSelected).toBe(true);
+});
+
+it('sets the Sudoku\'s state to be under check when check button is pressed', () => {
+    const app = mount(<App />);
+
+    app.find('CheckButton').simulate('click');
+
+    expect(app.find('Sudoku').props().isUnderCheck).toBe(true);
 });
 
 it('does not allow input into locked cells', () => {

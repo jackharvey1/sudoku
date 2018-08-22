@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { css } from 'react-emotion';
 
 const buttonClass = css`
-    border: none;
     padding: 0;
     margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+
+const buttonContainerClass = css`
+    border: none;
 
     &:focus {
         outline: none;
@@ -22,9 +25,11 @@ const iconClass = css`
 const ButtonProvider = props => {
     const Icon = props.icon;
     return (
-        <button className={buttonClass} onClick={props.onClick}>
-            <Icon className={iconClass} />
-            <p>{props.text}</p>
+        <button className={buttonContainerClass} onClick={props.onClick}>
+            <div className={buttonClass}>
+                <Icon className={iconClass} />
+                <p>{props.text}</p>
+            </div>
         </button>
     );
 };

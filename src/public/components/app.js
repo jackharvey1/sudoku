@@ -3,7 +3,7 @@ import { css } from 'react-emotion';
 import Sudoku from './sudoku';
 import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';
-import ResetButton from './buttons/reset';
+import Panel from './buttons/panel';
 
 import { generatePuzzle } from '../js/generator';
 import { deepClone, deepEquals, getClueIndices } from '../js/utils/array';
@@ -47,8 +47,13 @@ class App extends Component {
                             selectSquare={this.selectSquare.bind(this)}
                             selectedBox={this.state.selectedBox}
                             selectedSquare={this.state.selectedSquare}
+                            isUnderCheck={this.state.isUnderCheck}
+                            solution={this.state.solution}
                         />
-                        <ResetButton onClick={this.reset.bind(this)} />
+                        <Panel
+                            resetFunction={this.reset.bind(this)}
+                            checkFunction={this.check.bind(this)}
+                        />
                     </ListenerWrapper>
                 </div>
             );
@@ -57,6 +62,10 @@ class App extends Component {
     }
 
     handleKeyDown ({ key }) {
+        this.setState({
+            isUnderCheck: false
+        });
+
         const { selectedBox, selectedSquare } = this.state;
         let { major: row, minor: column } = circularPositionMap(selectedBox, selectedSquare);
 
@@ -86,7 +95,8 @@ class App extends Component {
     selectSquare (box, square) {
         this.setState({
             selectedBox: box,
-            selectedSquare: square
+            selectedSquare: square,
+            isUnderCheck: false
         });
     }
 
@@ -108,6 +118,12 @@ class App extends Component {
     reset () {
         this.setState(generateState);
     }
+
+    check () {
+        this.setState({
+            isUnderCheck: true
+        });
+    }
 }
 
 function generateState () {
@@ -119,7 +135,8 @@ function generateState () {
         lockedCells,
         difficulty,
         selectedBox: null,
-        selectedSquare: null
+        selectedSquare: null,
+        isUnderCheck: false
     };
 }
 

@@ -12,11 +12,13 @@ beforeEach(() => {
 it('renders the Box component as intended', () => {
     renderer.render(<Box
         box={0}
+        onClick={() => null}
         values={["1", "", "", "", "", "", "", "", ""]}
-        lockedCells={[[0, 1]]}
+        isUnderCheck={false}
         selectedBox={0}
         selectedSquare={0}
-        onClick={() => null}
+        lockedCells={[[0, 1]]}
+        solution={[[], [], [], [], [], [], [], [], []]}
     />);
     const output = renderer.getRenderOutput();
     expect(output).toMatchSnapshot();
@@ -26,11 +28,13 @@ describe('Predicates for squares', () => {
     it('Marks as locked when cell is specified in locked cells', () => {
         const wrapper = shallow(<Box
             box={0}
+            onClick={() => null}
             values={["1", "", "", "", "", "", "", "", ""]}
-            lockedCells={[0, 1]}
+            isUnderCheck={false}
             selectedBox={0}
             selectedSquare={0}
-            onClick={() => null}
+            lockedCells={[0, 1]}
+            solution={[[], [], [], [], [], [], [], [], []]}
         />);
         expect(wrapper.instance().isLockedSquare(1)).toBe(true);
     });
@@ -38,11 +42,13 @@ describe('Predicates for squares', () => {
     it('Marks as selected when box and square match selected box and square', () => {
         const wrapper = shallow(<Box
             box={0}
+            onClick={() => null}
             values={["1", "", "", "", "", "", "", "", ""]}
-            lockedCells={[0, 1]}
+            isUnderCheck={false}
             selectedBox={0}
             selectedSquare={0}
-            onClick={() => null}
+            lockedCells={[0, 1]}
+            solution={[[], [], [], [], [], [], [], [], []]}
         />);
         expect(wrapper.instance().isSelectedSquare(0)).toBe(true);
     });
@@ -51,11 +57,13 @@ describe('Predicates for squares', () => {
         it('Marks as relevant when on the same row', () => {
             const wrapper = shallow(<Box
                 box={0}
+                onClick={() => null}
                 values={["1", "", "", "", "", "", "", "", ""]}
-                lockedCells={[[0, 1]]}
+                isUnderCheck={false}
                 selectedBox={1}
                 selectedSquare={5}
-                onClick={() => null}
+                lockedCells={[[0, 1]]}
+                solution={[[], [], [], [], [], [], [], [], []]}
             />);
             expect(wrapper.instance().isRelevantSquare(4)).toBe(true);
         });
@@ -63,11 +71,13 @@ describe('Predicates for squares', () => {
         it('Marks as relevant when on the same column', () => {
             const wrapper = shallow(<Box
                 box={0}
+                onClick={() => null}
                 values={["1", "", "", "", "", "", "", "", ""]}
-                lockedCells={[0, 1]}
+                isUnderCheck={false}
                 selectedBox={3}
                 selectedSquare={1}
-                onClick={() => null}
+                lockedCells={[0, 1]}
+                solution={[[], [], [], [], [], [], [], [], []]}
             />);
             expect(wrapper.instance().isRelevantSquare(7)).toBe(true);
         });
@@ -75,11 +85,13 @@ describe('Predicates for squares', () => {
         it('Marks as relevant when in the same box', () => {
             const wrapper = shallow(<Box
                 box={0}
+                onClick={() => null}
                 values={["1", "", "", "", "", "", "", "", ""]}
-                lockedCells={[0, 1]}
+                isUnderCheck={false}
                 selectedBox={0}
                 selectedSquare={5}
-                onClick={() => null}
+                lockedCells={[0, 1]}
+                solution={[[], [], [], [], [], [], [], [], []]}
             />);
             expect(wrapper.instance().isRelevantSquare(8)).toBe(true);
         });
