@@ -1,23 +1,30 @@
+import { render } from '@testing-library/react';
+import { act } from 'react';
 import ListenerWrapper from '../../../public/components/listener-wrapper';
-import { mount } from 'enzyme';
 
-it('calls the listener on the wrapper when an event is triggered', () => {
-    const spy = jest.fn();
-    mount(<ListenerWrapper onKeyPress={spy} />);
+function press () {
+    act(() => {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+    });
+}
 
-    const event = new KeyboardEvent('keydown', { key: 'space' });
-    window.dispatchEvent(event);
+it('forwards keydown events from the window', () => {
+    const onKeyPress = vi.fn();
+    render(<ListenerWrapper onKeyPress={onKeyPress}><div /></ListenerWrapper>);
 
-    expect(spy).toHaveBeenCalled();
+    press();
+
+    expect(onKeyPress).toHaveBeenCalledOnce();
 });
 
-it('does not call the listener when an event is triggered after unmount', () => {
-    const spy = jest.fn();
-    const listener = mount(<ListenerWrapper onKeyPress={spy} />);
-    listener.unmount();
+it('removes the listener on unmount', () => {
+    const onKeyPress = vi.fn();
+    const { unmount } = render(
+        <ListenerWrapper onKeyPress={onKeyPress}><div /></ListenerWrapper>
+    );
 
-    const event = new KeyboardEvent('keydown', { key: 'space' });
-    window.dispatchEvent(event);
+    unmount();
+    press();
 
-    expect(spy).not.toHaveBeenCalled();
+    expect(onKeyPress).not.toHaveBeenCalled();
 });

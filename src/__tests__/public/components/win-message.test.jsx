@@ -1,26 +1,20 @@
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import WinMessage from '../../../public/components/win-message';
 
-let renderer;
+it('shows the solved overlay and calls reset', async () => {
+    const user = userEvent.setup();
+    const reset = vi.fn();
+    render(<WinMessage solved={true} resetFunction={reset} />);
 
-beforeEach(() => {
-    renderer = new ShallowRenderer();
+    expect(screen.getByText('Solved!')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Again?' }));
+
+    expect(reset).toHaveBeenCalledOnce();
 });
 
-it('renders the win message as expected when sudoku is solved', () => {
-    renderer.render(<WinMessage
-        solved={true}
-        resetFunction={() => {}}
-    />);
-    const output = renderer.getRenderOutput();
-    expect(output).toMatchSnapshot();
-});
+it('renders nothing when the puzzle is not solved', () => {
+    const { container } = render(<WinMessage solved={false} resetFunction={() => {}} />);
 
-it('returns null when the sudoku is not solved', () => {
-    renderer.render(<WinMessage
-        solved={false}
-        resetFunction={() => {}}
-    />);
-    const output = renderer.getRenderOutput();
-    expect(output).toMatchSnapshot();
+    expect(container).toBeEmptyDOMElement();
 });

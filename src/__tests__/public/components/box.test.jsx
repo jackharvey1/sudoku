@@ -1,98 +1,58 @@
+import { render, screen } from '@testing-library/react';
 import Box from '../../../public/components/box';
-import ShallowRenderer from 'react-test-renderer/shallow';
-import { shallow } from 'enzyme';
 
-let renderer;
-
-beforeEach(() => {
-    renderer = new ShallowRenderer();
-});
-
-it('renders the Box component as intended', () => {
-    renderer.render(<Box
+function renderBox (overrides = {}) {
+    return render(<Box
         box={0}
         onClick={() => null}
-        values={["1", "", "", "", "", "", "", "", ""]}
+        values={['1', '', '', '', '', '', '', '', '']}
         isUnderCheck={false}
         selectedBox={0}
         selectedSquare={0}
-        lockedCells={[[0, 1]]}
-        solution={[[], [], [], [], [], [], [], [], []]}
+        lockedCells={[0, 1]}
+        solution={['1', '', '', '', '', '', '', '', '']}
+        {...overrides}
     />);
-    const output = renderer.getRenderOutput();
-    expect(output).toMatchSnapshot();
+}
+
+function cell (square) {
+    return screen.getByTestId(`cell-0-${square}`);
+}
+
+it('marks the locked cell and the selected cell', () => {
+    renderBox({
+        lockedCells: [1],
+        solution: ['1', '', '2', '', '', '', '', '', '']
+    });
+
+    expect(cell(1)).toHaveAttribute('data-locked', 'true');
+    expect(cell(0)).toHaveAttribute('data-locked', 'false');
+    expect(cell(0)).toHaveAttribute('data-selected', 'true');
+    expect(cell(0)).toHaveAttribute('data-correct', 'true');
+    expect(cell(2)).toHaveAttribute('data-correct', 'false');
 });
 
-describe('Predicates for squares', () => {
-    it('Marks as locked when cell is specified in locked cells', () => {
-        const wrapper = shallow(<Box
-            box={0}
-            onClick={() => null}
-            values={["1", "", "", "", "", "", "", "", ""]}
-            isUnderCheck={false}
-            selectedBox={0}
-            selectedSquare={0}
-            lockedCells={[0, 1]}
-            solution={[[], [], [], [], [], [], [], [], []]}
-        />);
-        expect(wrapper.instance().isLockedSquare(1)).toBe(true);
-    });
+it('marks nothing relevant when no cell is selected', () => {
+    renderBox({ selectedBox: null, selectedSquare: null });
 
-    it('Marks as selected when box and square match selected box and square', () => {
-        const wrapper = shallow(<Box
-            box={0}
-            onClick={() => null}
-            values={["1", "", "", "", "", "", "", "", ""]}
-            isUnderCheck={false}
-            selectedBox={0}
-            selectedSquare={0}
-            lockedCells={[0, 1]}
-            solution={[[], [], [], [], [], [], [], [], []]}
-        />);
-        expect(wrapper.instance().isSelectedSquare(0)).toBe(true);
-    });
+    expect(cell(4)).toHaveAttribute('data-relevant', 'false');
+    expect(cell(4)).toHaveAttribute('data-selected', 'false');
+});
 
-    describe('Marking as relevant', () => {
-        it('Marks as relevant when on the same row', () => {
-            const wrapper = shallow(<Box
-                box={0}
-                onClick={() => null}
-                values={["1", "", "", "", "", "", "", "", ""]}
-                isUnderCheck={false}
-                selectedBox={1}
-                selectedSquare={5}
-                lockedCells={[[0, 1]]}
-                solution={[[], [], [], [], [], [], [], [], []]}
-            />);
-            expect(wrapper.instance().isRelevantSquare(4)).toBe(true);
-        });
+it('marks a cell relevant when it shares a row', () => {
+    renderBox({ selectedBox: 1, selectedSquare: 5, lockedCells: [0, 1] });
 
-        it('Marks as relevant when on the same column', () => {
-            const wrapper = shallow(<Box
-                box={0}
-                onClick={() => null}
-                values={["1", "", "", "", "", "", "", "", ""]}
-                isUnderCheck={false}
-                selectedBox={3}
-                selectedSquare={1}
-                lockedCells={[0, 1]}
-                solution={[[], [], [], [], [], [], [], [], []]}
-            />);
-            expect(wrapper.instance().isRelevantSquare(7)).toBe(true);
-        });
+    expect(cell(4)).toHaveAttribute('data-relevant', 'true');
+});
 
-        it('Marks as relevant when in the same box', () => {
-            const wrapper = shallow(<Box
-                box={0}
-                onClick={() => null}
-                values={["1", "", "", "", "", "", "", "", ""]}
-                isUnderCheck={false}
-                selectedBox={0}
-                selectedSquare={5}
-                lockedCells={[0, 1]}
-                solution={[[], [], [], [], [], [], [], [], []]}
-            />);
-            expect(wrapper.instance().isRelevantSquare(8)).toBe(true);
-        });
-    });
+it('marks a cell relevant when it shares a column', () => {
+    renderBox({ selectedBox: 3, selectedSquare: 1 });
+
+    expect(cell(7)).toHaveAttribute('data-relevant', 'true');
+});
+
+it('marks a cell relevant when it is in the same box', () => {
+    renderBox({ selectedBox: 0, selectedSquare: 5 });
+
+    expect(cell(8)).toHaveAttribute('data-relevant', 'true');
 });

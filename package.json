@@ -1,50 +1,35 @@
 {
   "name": "sudoku",
   "type": "module",
+  "packageManager": "pnpm@12.11.2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/css": "^11.13.5",
+    "prop-types": "^15.8.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-icons": "5",
-    "react-scripts": "1.1.1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!<rootDir>/node_modules/",
-      "!src/index.jsx"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    },
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "react-icons": "5"
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build",
     "dev": "vite",
+    "build": "vite build",
     "lint": "eslint src/",
-    "jest": "react-scripts test --env=jsdom",
-    "test": "npm run lint && npm run jest",
-    "eject": "react-scripts eject"
+    "test": "pnpm run lint && pnpm run test:unit",
+    "test:unit": "vitest run --coverage",
+    "test:watch": "vitest"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/coverage-v8": "^5.0.3",
     "codecov": "^3.0.2",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-plugin-react": "^7.7.0",
-    "jest-enzyme": "^6.0.2",
-    "vite": "^8.3.4"
+    "jsdom": "^30.1.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
   }
 }

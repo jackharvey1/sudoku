@@ -5,7 +5,10 @@
         "mocha": true,
         "es6": true
     },
-    "globals": {},
+    "globals": {
+        "vi": true,
+        "expect": true
+    },
     "extends": [
         "plugin:react/recommended",
         "eslint:recommended"
