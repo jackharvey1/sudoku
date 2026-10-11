@@ -1,17 +1,11 @@
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Square from '../../../public/components/square';
-import ShallowRenderer from 'react-test-renderer/shallow';
-import { shallow } from 'enzyme';
-import solvedSudoku from '../../sudokus.json';
 
-let renderer;
-
-beforeEach(() => {
-    renderer = new ShallowRenderer();
-});
-
-it('renders as expected in basic state', () => {
-    renderer.render(<Square
-        onClick={() => {}}
+function renderSquare (overrides = {}) {
+    const onClick = vi.fn();
+    render(<Square
+        onClick={onClick}
         box={0}
         square={0}
         value={1}
@@ -20,88 +14,44 @@ it('renders as expected in basic state', () => {
         isRelevant={false}
         isUnderCheck={false}
         isCorrect={true}
-        solution={solvedSudoku}
+        {...overrides}
     />);
-    const output = renderer.getRenderOutput();
-    expect(output).toMatchSnapshot();
+    return { onClick, cell: screen.getByTestId('cell-0-0') };
+}
+
+it('shows its value and reports its coordinates when clicked', async () => {
+    const user = userEvent.setup();
+    const { onClick, cell } = renderSquare();
+
+    expect(cell.textContent).toBe('1');
+    await user.click(cell);
+
+    expect(onClick).toHaveBeenCalledWith(0, 0);
 });
 
-it('renders with bold text when locked', () => {
-    const square = shallow(<Square
-        onClick={() => {}}
-        box={0}
-        square={0}
-        value={1}
-        isSelected={false}
-        isLocked={true}
-        isRelevant={false}
-        isUnderCheck={false}
-        isCorrect={true}
-        solution={solvedSudoku}
-    />);
-    expect(square).toMatchSnapshot();
+it('marks a locked cell', () => {
+    const { cell } = renderSquare({ isLocked: true });
+    expect(cell).toHaveAttribute('data-locked', 'true');
 });
 
-it('renders with background when selected', () => {
-    const square = shallow(<Square
-        onClick={() => {}}
-        box={0}
-        square={0}
-        value={1}
-        isSelected={true}
-        isLocked={false}
-        isRelevant={false}
-        isUnderCheck={false}
-        isCorrect={true}
-        solution={solvedSudoku}
-    />);
-    expect(square).toMatchSnapshot();
+it('marks a selected cell', () => {
+    const { cell } = renderSquare({ isSelected: true });
+    expect(cell).toHaveAttribute('data-selected', 'true');
 });
 
-it('renders with a light background when relevant', () => {
-    const square = shallow(<Square
-        onClick={() => {}}
-        box={0}
-        square={0}
-        value={1}
-        isSelected={true}
-        isLocked={false}
-        isRelevant={true}
-        isUnderCheck={false}
-        isCorrect={true}
-        solution={solvedSudoku}
-    />);
-    expect(square).toMatchSnapshot();
+it('marks a relevant cell that is not selected', () => {
+    const { cell } = renderSquare({ isSelected: false, isRelevant: true });
+    expect(cell).toHaveAttribute('data-relevant', 'true');
+    expect(cell).toHaveAttribute('data-selected', 'false');
 });
 
-it('renders with a green background when under check and correct', () => {
-    const square = shallow(<Square
-        onClick={() => {}}
-        box={0}
-        square={0}
-        value={1}
-        isSelected={true}
-        isLocked={false}
-        isRelevant={true}
-        isUnderCheck={true}
-        isCorrect={true}
-        solution={solvedSudoku}
-    />);
-    expect(square).toMatchSnapshot();
+it('marks a correct cell that is under check', () => {
+    const { cell } = renderSquare({ isUnderCheck: true, isCorrect: true });
+    expect(cell).toHaveAttribute('data-under-check', 'true');
+    expect(cell).toHaveAttribute('data-correct', 'true');
 });
 
-it('renders with a red background when under check and not correct', () => {
-    const square = shallow(<Square
-        onClick={() => {}}
-        box={0}
-        square={0}
-        value={4}
-        isSelected={true}
-        isLocked={false}
-        isRelevant={true}
-        isUnderCheck={true}
-        isCorrect={false}
-        solution={solvedSudoku}
-    />);
-    expect(square).toMatchSnapshot();
+it('marks an incorrect cell that is under check', () => {
+    const { cell } = renderSquare({ value: 4, isUnderCheck: true, isCorrect: false });
+    expect(cell).toHaveAttribute('data-correct', 'false');
 });

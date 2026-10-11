@@ -25,8 +25,8 @@ const difficultyMessageClass = css`
 class App extends Component {
     constructor () {
         super();
-
         this.state = generateState();
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     render () {
@@ -35,7 +35,7 @@ class App extends Component {
 
             return (
                 <div className={appClass}>
-                    <ListenerWrapper onKeyPress={this.handleKeyDown.bind(this)}>
+                    <ListenerWrapper onKeyPress={this.handleKeyDown}>
                         <div className={difficultyMessageClass}>Difficulty: {this.state.difficulty}</div>
                         <WinMessage
                             solved={isSolved}
@@ -128,7 +128,7 @@ class App extends Component {
 
 function generateState () {
     const { solution, sudoku, difficulty } = generatePuzzle();
-    const lockedCells = getClueIndices(sudoku);
+    const lockedCells = sudoku ? getClueIndices(sudoku) : [];
     return {
         solution,
         sudoku,

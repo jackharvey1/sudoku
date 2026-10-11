@@ -43,6 +43,14 @@ const getBackgroundColour = props => {
 export default function Square (props) {
     return (
         <div
+            data-testid={`cell-${props.box}-${props.square}`}
+            data-box={props.box}
+            data-square={props.square}
+            data-selected={props.isSelected}
+            data-locked={props.isLocked}
+            data-relevant={props.isRelevant}
+            data-under-check={props.isUnderCheck}
+            data-correct={props.isCorrect}
             className={createSquareClass(props)}
             onClick={() => props.onClick(props.box, props.square)}
         >
