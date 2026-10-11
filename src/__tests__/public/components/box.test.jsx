@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '../../../public/components/box';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { shallow } from 'enzyme';

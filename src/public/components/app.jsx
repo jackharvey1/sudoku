@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { css } from 'react-emotion';
+import { css } from '@emotion/css';
 import Sudoku from './sudoku';
 import ListenerWrapper from './listener-wrapper';
 import WinMessage from './win-message';

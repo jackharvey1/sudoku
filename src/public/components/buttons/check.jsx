@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonProvider from './button-provider';
-import CheckIcon from 'react-icons/lib/io/checkmark';
+import { IoCheckmark as CheckIcon } from 'react-icons/io5';
 
 const CheckButton = props => (
     <ButtonProvider

@@ -1,20 +1,20 @@
 {
   "name": "sudoku",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "emotion": "^9.1.3",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-emotion": "^9.1.3",
-    "react-icons": "^2.2.7",
+    "@emotion/css": "^11.13.5",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "5",
     "react-scripts": "1.1.1"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!<rootDir>/node_modules/",
-      "!src/index.js"
+      "!src/index.jsx"
     ],
     "coverageThreshold": {
       "global": {
@@ -30,18 +30,21 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "vite build",
+    "dev": "vite",
     "lint": "eslint src/",
     "jest": "react-scripts test --env=jsdom",
     "test": "npm run lint && npm run jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
     "codecov": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-plugin-react": "^7.7.0",
-    "jest-enzyme": "^6.0.2"
+    "jest-enzyme": "^6.0.2",
+    "vite": "^8.3.4"
   }
 }

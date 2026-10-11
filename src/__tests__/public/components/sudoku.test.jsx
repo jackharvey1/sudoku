@@ -1,4 +1,3 @@
-import React from 'react';
 import Sudoku from '../../../public/components/sudoku';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { emptySudoku } from '../../sudokus.json';

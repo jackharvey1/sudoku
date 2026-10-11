@@ -1,4 +1,3 @@
-import React from 'react';
 import ListenerWrapper from '../../../public/components/listener-wrapper';
 import { mount } from 'enzyme';
 
