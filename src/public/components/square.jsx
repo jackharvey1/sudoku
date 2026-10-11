@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from 'react-emotion';
+import { css } from '@emotion/css';
 import PropTypes from 'prop-types';
 
 const textClass = css`

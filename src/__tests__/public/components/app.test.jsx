@@ -1,4 +1,3 @@
-import React from 'react';
 import App from '../../../public/components/app';
 import Renderer from 'react-test-renderer';
 import { mount } from 'enzyme';

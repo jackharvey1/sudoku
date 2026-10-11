@@ -1,4 +1,3 @@
-import React from 'react';
 import ButtonProvider from '../../../../public/components/buttons/button-provider';
 import Renderer from 'react-test-renderer';
 
