@@ -1,0 +1,51 @@
+diff --git a/lib/rules/jsx-filename-extension.js b/lib/rules/jsx-filename-extension.js
+index 4a2cfeede66b68255ca48bc38c0eb2f1537a785a..44718e73a7d7b5798c7911d7553812f66d40ef6e 100644
+--- a/lib/rules/jsx-filename-extension.js
++++ b/lib/rules/jsx-filename-extension.js
+@@ -61,7 +61,7 @@ module.exports = {
+   },
+ 
+   create(context) {
+-    const filename = context.getFilename();
++    const filename = typeof context.filename === 'string' ? context.filename : context.getFilename();
+ 
+     let jsxNode;
+ 
+diff --git a/lib/util/version.js b/lib/util/version.js
+index c9dc683b7d149c5a3a941bdcbd32f657facdfbf6..40da48a77c50b13fbea3f712e8e2ae23670f35b2 100644
+--- a/lib/util/version.js
++++ b/lib/util/version.js
+@@ -26,9 +26,19 @@ function resetDetectedVersion() {
+   cachedDetectedReactVersion = undefined;
+ }
+ 
++function filenameFromContext(contextOrFilename) {
++  if (typeof contextOrFilename === 'string') {
++    return contextOrFilename;
++  }
++  if (typeof contextOrFilename.filename === 'string') {
++    return contextOrFilename.filename;
++  }
++  return contextOrFilename.getFilename();
++}
++
+ function resolveBasedir(contextOrFilename) {
+   if (contextOrFilename) {
+-    const filename = typeof contextOrFilename === 'string' ? contextOrFilename : contextOrFilename.getFilename();
++    const filename = filenameFromContext(contextOrFilename);
+     const dirname = path.dirname(filename);
+     try {
+       if (fs.statSync(filename).isFile()) {
+diff --git a/package.json b/package.json
+index 56a2abf018da0172a897ada6065308569c46d5b2..5e7ed23198d2e80836f13ae0e40a24c5920095c9 100644
+--- a/package.json
++++ b/package.json
+@@ -89,7 +89,7 @@
+     "typescript-eslint-parser": "^20.1.1"
+   },
+   "peerDependencies": {
+-    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7"
++    "eslint": "^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7 || ^10.0.0"
+   },
+   "engines": {
+     "node": ">=4"

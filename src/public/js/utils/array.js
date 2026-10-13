@@ -59,7 +59,7 @@ function getSmallestClueSet (array) {
             array.length > 1 && (!smallest || smallest.array.length > array.length)
                 ? { array, index }
                 : smallest
-            , null).index;
+        , null).index;
 
     return [Math.floor(flattenedIndex / 9), flattenedIndex % 9];
 }
