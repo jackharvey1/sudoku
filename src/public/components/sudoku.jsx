@@ -1,7 +1,5 @@
 import { Component } from 'react';
 import { css } from '@emotion/css';
-import PropTypes from 'prop-types';
-import customPropTypes from '../custom-prop-types';
 import Box from './box';
 
 const rowClass = css`
@@ -47,18 +45,6 @@ class Sudoku extends Component {
                 solution={this.props.solution[i]}
             />
         );
-    }
-
-    static get propTypes() {
-        return {
-            lockedCells: PropTypes.array.isRequired,
-            grid: PropTypes.array.isRequired,
-            selectSquare: PropTypes.func.isRequired,
-            selectedBox: customPropTypes.numberOrNull,
-            selectedSquare: customPropTypes.numberOrNull,
-            isUnderCheck: PropTypes.bool.isRequired,
-            solution: PropTypes.array.isRequired
-        };
     }
 }
 

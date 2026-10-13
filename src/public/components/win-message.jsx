@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import PropTypes from 'prop-types';
 
 const backgroundClass = css`
     display: block;
@@ -37,10 +36,5 @@ const WinMessage = props =>
             </div>
         </div>)
         : null;
-
-WinMessage.propTypes = {
-    solved: PropTypes.bool,
-    resetFunction: PropTypes.func
-};
 
 export default WinMessage;

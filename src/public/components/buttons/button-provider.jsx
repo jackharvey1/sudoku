@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { css } from '@emotion/css';
 
 const buttonClass = css`
@@ -31,12 +30,6 @@ const ButtonProvider = props => {
             </div>
         </button>
     );
-};
-
-ButtonProvider.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    text: PropTypes.string.isRequired,
-    icon: PropTypes.func
 };
 
 export default ButtonProvider;

@@ -31,6 +31,7 @@ export default defineConfig([
             },
         },
         rules: {
+            "react/prop-types": "off",
             "accessor-pairs": "error",
             "array-bracket-spacing": "error",
             "array-callback-return": "error",
