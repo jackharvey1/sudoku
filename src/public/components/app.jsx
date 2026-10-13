@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { css } from '@emotion/css';
 import Sudoku from './sudoku';
 import ListenerWrapper from './listener-wrapper';
@@ -73,7 +73,7 @@ class App extends Component {
             deepEquals(lockedCell, [selectedBox, selectedSquare])
         );
 
-        if (/[1-9]/.test(key) && !isLockedCell) {
+        if ((/[1-9]/).test(key) && !isLockedCell) {
             this.insertValue(key);
         } else if (key === 'Backspace' && !isLockedCell) {
             this.deleteValue();
