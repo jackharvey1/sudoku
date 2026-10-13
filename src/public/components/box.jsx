@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import { css } from '@emotion/css';
-import PropTypes from 'prop-types';
 import Square from './square';
-import customPropTypes from '../custom-prop-types';
 import { circularPositionMap } from '../js/utils/transform';
 
 const boxClass = css`
@@ -77,19 +75,6 @@ class Box extends Component {
         }
 
         return false;
-    }
-
-    static get propTypes() {
-        return {
-            onClick: PropTypes.func.isRequired,
-            box: PropTypes.number.isRequired,
-            values: PropTypes.array.isRequired,
-            lockedCells: PropTypes.array.isRequired,
-            selectedBox: customPropTypes.numberOrNull,
-            selectedSquare: customPropTypes.numberOrNull,
-            isUnderCheck: PropTypes.bool.isRequired,
-            solution: PropTypes.array.isRequired
-        };
     }
 }
 

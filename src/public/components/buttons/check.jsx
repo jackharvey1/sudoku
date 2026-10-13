@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import ButtonProvider from './button-provider';
 import { IoCheckmark as CheckIcon } from 'react-icons/io5';
 
@@ -9,9 +8,5 @@ const CheckButton = props => (
         icon={CheckIcon}
     />
 );
-
-CheckButton.propTypes = {
-    onClick: PropTypes.func.isRequired
-};
 
 export default CheckButton;

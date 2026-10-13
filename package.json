@@ -6,7 +6,6 @@
   "private": true,
   "dependencies": {
     "@emotion/css": "^11.13.5",
-    "prop-types": "^15.8.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "react-icons": "5"

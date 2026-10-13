@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import PropTypes from 'prop-types';
 
 const textClass = css`
     padding: 4px;
@@ -60,18 +59,3 @@ export default function Square (props) {
         </div>
     );
 }
-
-Square.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    box: PropTypes.number.isRequired,
-    square: PropTypes.number.isRequired,
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
-    isSelected: PropTypes.bool.isRequired,
-    isLocked: PropTypes.bool.isRequired,
-    isRelevant: PropTypes.bool.isRequired,
-    isUnderCheck: PropTypes.bool.isRequired,
-    isCorrect: PropTypes.bool.isRequired
-};
