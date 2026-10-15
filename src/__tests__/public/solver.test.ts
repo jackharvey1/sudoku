@@ -5,6 +5,7 @@ import {
     getPossiblesMap
 } from '../../public/js/solver';
 import { isSolved } from '../../public/js/utils/validate';
+import { type SolveSuccess } from '../../public/js/types';
 import { sudoku, solvedSudoku, trickySudoku } from '../sudokus.json';
 
 const restrictedPossiblesMap = [
@@ -57,7 +58,7 @@ describe('When solving sudoku', () => {
     });
 
     it('solves a sudoku requiring backtracking', () => {
-        const solution = solve(trickySudoku, 2000);
+        const solution = solve(trickySudoku, 2000) as SolveSuccess;
         expect(isSolved(solution.sudoku)).toBe(true);
     });
 });
