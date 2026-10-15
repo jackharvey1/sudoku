@@ -8,6 +8,7 @@ import Panel from './buttons/panel';
 import { generatePuzzle } from '../js/generator';
 import { deepClone, deepEquals, getClueIndices } from '../js/utils/array';
 import { circularPositionMap } from '../js/utils/transform';
+import { type Coordinate, type Grid } from '../js/types';
 
 const appClass = css`
     width: 294px;
@@ -22,16 +23,27 @@ const difficultyMessageClass = css`
     margin-bottom: 8px;
 `;
 
-class App extends Component {
+type AppState = {
+    solution: Grid | null;
+    sudoku: Grid | null;
+    lockedCells: Coordinate[];
+    difficulty: number | null;
+    selectedBox: number | null;
+    selectedSquare: number | null;
+    isUnderCheck: boolean;
+};
+
+class App extends Component<object, AppState> {
     constructor () {
-        super();
+        super({});
         this.state = generateState();
         this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     render () {
-        if (this.state.sudoku) {
-            const isSolved = deepEquals(this.state.solution, this.state.sudoku);
+        const { sudoku, solution } = this.state;
+        if (sudoku) {
+            const isSolved = deepEquals(solution as Grid, sudoku);
 
             return (
                 <div className={appClass}>
@@ -42,13 +54,13 @@ class App extends Component {
                             resetFunction={this.reset.bind(this)}
                         />
                         <Sudoku
-                            grid={this.state.sudoku}
+                            grid={sudoku}
                             lockedCells={this.state.lockedCells}
                             selectSquare={this.selectSquare.bind(this)}
                             selectedBox={this.state.selectedBox}
                             selectedSquare={this.state.selectedSquare}
                             isUnderCheck={this.state.isUnderCheck}
-                            solution={this.state.solution}
+                            solution={solution as Grid}
                         />
                         <Panel
                             resetFunction={this.reset.bind(this)}
@@ -61,13 +73,13 @@ class App extends Component {
         return null;
     }
 
-    handleKeyDown ({ key }) {
+    handleKeyDown ({ key }: KeyboardEvent) {
         this.setState({
             isUnderCheck: false
         });
 
         const { selectedBox, selectedSquare } = this.state;
-        let { major: row, minor: column } = circularPositionMap(selectedBox, selectedSquare);
+        let { major: row, minor: column } = circularPositionMap(selectedBox as number, selectedSquare as number);
 
         const isLockedCell = this.state.lockedCells.some(lockedCell =>
             deepEquals(lockedCell, [selectedBox, selectedSquare])
@@ -92,7 +104,7 @@ class App extends Component {
         this.selectSquare(box, square);
     }
 
-    selectSquare (box, square) {
+    selectSquare (box: number, square: number) {
         this.setState({
             selectedBox: box,
             selectedSquare: square,
@@ -100,18 +112,18 @@ class App extends Component {
         });
     }
 
-    insertValue (value) {
-        const nextValues = deepClone(this.state.sudoku);
+    insertValue (value: string) {
+        const nextValues = deepClone(this.state.sudoku as Grid);
         const relevantValue = value[value.length - 1];
         const { selectedBox: box, selectedSquare: square } = this.state;
-        nextValues[box][square] = Number(relevantValue);
+        nextValues[box as number][square as number] = Number(relevantValue);
         this.setState({ sudoku: nextValues });
     }
 
     deleteValue () {
-        const nextValues = deepClone(this.state.sudoku);
+        const nextValues = deepClone(this.state.sudoku as Grid);
         const { selectedBox: box, selectedSquare: square } = this.state;
-        nextValues[box][square] = '';
+        nextValues[box as number][square as number] = '';
         this.setState({ sudoku: nextValues });
     }
 
@@ -126,7 +138,7 @@ class App extends Component {
     }
 }
 
-function generateState () {
+function generateState (): AppState {
     const { solution, sudoku, difficulty } = generatePuzzle();
     const lockedCells = sudoku ? getClueIndices(sudoku) : [];
     return {

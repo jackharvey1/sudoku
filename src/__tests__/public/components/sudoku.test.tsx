@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { emptySudoku } from '../../sudokus.json';
-import { deepClone } from '../../../public/js/utils/array.js';
+import { deepClone } from '../../../public/js/utils/array';
+import { type Grid } from '../../../public/js/types';
 import Sudoku from '../../../public/components/sudoku';
 
 it('renders every cell and passes selection and locks through', () => {
-    const grid = deepClone(emptySudoku);
+    const grid: Grid = deepClone(emptySudoku);
     grid[0][0] = 7;
 
     render(<Sudoku

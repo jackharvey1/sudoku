@@ -2,13 +2,15 @@ import js from "@eslint/js";
 import globals from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
     {
-        files: ["src/**/*.{js,jsx}"],
+        files: ["src/**/*.{ts,tsx}"],
         extends: [
             js.configs.recommended,
+            tseslint.configs.recommended,
             react.configs.flat.recommended,
             react.configs.flat["jsx-runtime"],
             reactHooks.configs.flat["recommended-latest"],
@@ -170,7 +172,7 @@ export default defineConfig([
         },
     },
     {
-        files: ["src/__tests__/**/*.{js,jsx}"],
+        files: ["src/__tests__/**/*.{ts,tsx}"],
         languageOptions: {
             globals: {
                 describe: "readonly",
@@ -182,6 +184,7 @@ export default defineConfig([
         },
         rules: {
             "no-empty-function": "off",
+            "@typescript-eslint/no-empty-function": "off",
         },
     },
 ]);

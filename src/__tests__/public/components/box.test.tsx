@@ -15,7 +15,7 @@ function renderBox (overrides = {}) {
     />);
 }
 
-function cell (square) {
+function cell (square: number) {
     return screen.getByTestId(`cell-0-${square}`);
 }
 

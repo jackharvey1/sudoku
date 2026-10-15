@@ -10,26 +10,34 @@ import {
     deepClone,
     arrayExcludingElement
 } from '../../../public/js/utils/array';
+import { type Grid } from '../../../public/js/types';
 import { sudoku, solvedSudoku } from '../../sudokus.json';
 
+declare module 'vitest' {
+    interface Matchers<R extends void | Promise<void> = void | Promise<void>> {
+        toHaveMirroredCluesRemoved(): R;
+        toBeRandom(first: string, second: string): R;
+    }
+}
+
 expect.extend({
-    toHaveMirroredCluesRemoved(received) {
+    toHaveMirroredCluesRemoved(received: Grid) {
         const clueCount = getClueCount(received);
         const twoWereRemoved = clueCount === 79;
         const centreWasRemoved = received[4][4] === '' && clueCount === 80;
         const pass = twoWereRemoved || centreWasRemoved;
         return {
-            message: () => `expected array to have two clues or centre clue removed`,
+            message: () => 'expected array to have two clues or centre clue removed',
             pass
         };
     },
-    toBeRandom(fn) {
+    toBeRandom(fn: () => unknown) {
         const first = fn();
         const second = fn();
         const third = fn();
         const pass = first !== second || first !== third;
         return {
-            message: () => `expected function to be random; got ${first}, ${second}, ${third}`,
+            message: () => `expected function to be random; got ${String(first)}, ${String(second)}, ${String(third)}`,
             pass
         };
     }

@@ -1,7 +1,12 @@
 import ResetButton from './reset';
 import CheckButton from './check';
 
-const Panel = props => (
+type PanelProps = {
+    resetFunction: () => void;
+    checkFunction: () => void;
+};
+
+const Panel = (props: PanelProps) => (
     <div>
         <ResetButton onClick={props.resetFunction} />
         <CheckButton onClick={props.checkFunction} />

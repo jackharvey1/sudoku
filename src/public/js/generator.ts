@@ -1,3 +1,4 @@
+import { type Grid, type Puzzle, type SolveResult } from './types';
 import { circularTransform, circularPositionMap } from './utils/transform';
 import { getPossibles } from './utils/possibles';
 import {
@@ -11,22 +12,26 @@ import { solve } from './solver';
 // https://www.technologyreview.com/s/426554/mathematicians-solve-minimum-sudoku-problem
 const mcGuireLimit = 17;
 
-function generatePuzzle (sudoku = generateFilledGrid(), previousSolution, branchingDifficulty) {
+function generatePuzzle (
+    sudoku: Grid = generateFilledGrid() as Grid,
+    previousSolution?: Grid,
+    branchingDifficulty?: number
+): Puzzle {
     const clueCount = getClueCount(sudoku);
     const nextSudoku = removeMirroredCluePair(sudoku);
 
-    const solution = solve(nextSudoku);
+    const solution = solve(nextSudoku) as SolveResult;
 
     return solution.sudoku && (clueCount - 2) > mcGuireLimit
         ? generatePuzzle(nextSudoku, solution.sudoku, solution.branchingDifficulty)
         : {
-            solution: circularTransform(previousSolution),
+            solution: circularTransform(previousSolution as Grid),
             sudoku: circularTransform(sudoku),
-            difficulty: branchingDifficulty + (81 - clueCount)
+            difficulty: (branchingDifficulty as number) + (81 - clueCount)
         };
 }
 
-function generateFilledGrid () {
+function generateFilledGrid (): Grid | void {
     const initialSudoku = createEmptySudoku();
     const stack = [initialSudoku];
     while (stack.length) {
@@ -57,7 +62,7 @@ function generateFilledGrid () {
     }
 }
 
-function createEmptySudoku () {
+function createEmptySudoku (): Grid {
     return Array(9)
         .fill('')
         .map(() =>

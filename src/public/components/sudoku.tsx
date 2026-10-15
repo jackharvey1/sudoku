@@ -1,11 +1,23 @@
 import { Component } from 'react';
 import { css } from '@emotion/css';
 import Box from './box';
+import { type Coordinate, type Grid } from '../js/types';
 
 const rowClass = css`
     display: flex;
 `;
-class Sudoku extends Component {
+
+type SudokuProps = {
+    grid: Grid;
+    lockedCells: Coordinate[];
+    selectSquare: (box: number, square: number) => void;
+    selectedBox: number | null;
+    selectedSquare: number | null;
+    isUnderCheck: boolean;
+    solution: Grid;
+};
+
+class Sudoku extends Component<SudokuProps> {
     render () {
         return (
             <div>
@@ -28,7 +40,7 @@ class Sudoku extends Component {
         );
     }
 
-    renderBox (i) {
+    renderBox (i: number) {
         const lockedCellsInBox = this.props.lockedCells
             .filter(([box]) => box === i)
             .map(([, cell]) => cell);

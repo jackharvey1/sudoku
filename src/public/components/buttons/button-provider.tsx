@@ -1,4 +1,5 @@
 import { css } from '@emotion/css';
+import { type ComponentType } from 'react';
 
 const buttonClass = css`
     padding: 0;
@@ -20,7 +21,13 @@ const iconClass = css`
     font-size: 32px;
 `;
 
-const ButtonProvider = props => {
+type ButtonProviderProps = {
+    onClick: () => void;
+    icon: ComponentType<{ className?: string }>;
+    text: string;
+};
+
+const ButtonProvider = (props: ButtonProviderProps) => {
     const Icon = props.icon;
     return (
         <button className={buttonContainerClass} onClick={props.onClick}>

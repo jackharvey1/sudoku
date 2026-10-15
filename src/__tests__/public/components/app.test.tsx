@@ -3,14 +3,25 @@ import userEvent from '@testing-library/user-event';
 import { act } from 'react';
 import { emptySudoku, solvedSudoku } from '../../sudokus.json';
 import { generatePuzzle } from '../../../public/js/generator';
-import { deepClone } from '../../../public/js/utils/array.js';
+import { deepClone } from '../../../public/js/utils/array';
+import { type Grid } from '../../../public/js/types';
 import App from '../../../public/components/app';
 
 vi.mock('../../../public/js/generator', () => ({
     generatePuzzle: vi.fn()
 }));
 
-function puzzle ({ sudoku = emptySudoku, solution = solvedSudoku, difficulty = Infinity } = {}) {
+const generatePuzzleMock = vi.mocked(generatePuzzle);
+
+function puzzle ({
+    sudoku = emptySudoku as Grid,
+    solution = solvedSudoku as Grid,
+    difficulty = Infinity
+}: {
+    sudoku?: Grid;
+    solution?: Grid;
+    difficulty?: number;
+} = {}) {
     return {
         sudoku: deepClone(sudoku),
         solution: deepClone(solution),
@@ -18,19 +29,19 @@ function puzzle ({ sudoku = emptySudoku, solution = solvedSudoku, difficulty = I
     };
 }
 
-function press (key) {
+function press (key: string) {
     act(() => {
         window.dispatchEvent(new KeyboardEvent('keydown', { key }));
     });
 }
 
-function cell (box, square) {
+function cell (box: number, square: number) {
     return screen.getByTestId(`cell-${box}-${square}`);
 }
 
 beforeEach(() => {
-    generatePuzzle.mockReset();
-    generatePuzzle.mockImplementation(() => puzzle());
+    generatePuzzleMock.mockReset();
+    generatePuzzleMock.mockImplementation(() => puzzle());
 });
 
 it('renders a board, the difficulty, and both buttons', () => {
@@ -44,7 +55,7 @@ it('renders a board, the difficulty, and both buttons', () => {
 });
 
 it('renders nothing when the puzzle has no grid', () => {
-    generatePuzzle.mockImplementation(() => ({
+    generatePuzzleMock.mockImplementation(() => ({
         sudoku: null,
         solution: null,
         difficulty: null
@@ -57,7 +68,7 @@ it('renders nothing when the puzzle has no grid', () => {
 
 it('loads a new puzzle when Reset is pressed', async () => {
     const user = userEvent.setup();
-    generatePuzzle
+    generatePuzzleMock
         .mockImplementationOnce(() => puzzle({ difficulty: 1 }))
         .mockImplementationOnce(() => puzzle({ difficulty: 2 }));
 
@@ -122,9 +133,9 @@ it('marks every cell as under check', async () => {
 
 it('does not replace a clue', async () => {
     const user = userEvent.setup();
-    const sudoku = deepClone(emptySudoku);
+    const sudoku: Grid = deepClone(emptySudoku);
     sudoku[0][0] = solvedSudoku[0][0];
-    generatePuzzle.mockImplementation(() => puzzle({ sudoku }));
+    generatePuzzleMock.mockImplementation(() => puzzle({ sudoku }));
 
     render(<App />);
     await user.click(cell(0, 0));
@@ -134,7 +145,7 @@ it('does not replace a clue', async () => {
 });
 
 describe('arrow keys', () => {
-    async function startAt (box, square) {
+    async function startAt (box: number, square: number) {
         const user = userEvent.setup();
         render(<App />);
         await user.click(cell(box, square));

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { css } from '@emotion/css';
 import Square from './square';
+import { type Cell } from '../js/types';
 import { circularPositionMap } from '../js/utils/transform';
 
 const boxClass = css`
@@ -11,7 +12,18 @@ const boxRowClass = css`
     display: table;
 `;
 
-class Box extends Component {
+type BoxProps = {
+    box: number;
+    onClick: (box: number, square: number) => void;
+    values: Cell[];
+    lockedCells: number[];
+    selectedBox: number | null;
+    selectedSquare: number | null;
+    isUnderCheck: boolean;
+    solution: Cell[];
+};
+
+class Box extends Component<BoxProps> {
     render () {
         return (
             <div className={boxClass}>
@@ -34,7 +46,7 @@ class Box extends Component {
         );
     }
 
-    renderSquare (square) {
+    renderSquare (square: number) {
         return (<Square
             onClick={this.props.onClick}
             box={this.props.box}
@@ -48,28 +60,29 @@ class Box extends Component {
         />);
     }
 
-    isCorrect (square) {
+    isCorrect (square: number) {
         return this.props.values[square] === this.props.solution[square];
     }
 
-    isLockedSquare (square) {
+    isLockedSquare (square: number) {
         return this.props.lockedCells.includes(square);
     }
 
-    isSelectedSquare (square) {
+    isSelectedSquare (square: number) {
         return this.props.selectedBox === this.props.box &&
             this.props.selectedSquare === square;
     }
 
-    isRelevantSquare (square) {
-        if (this.props.selectedBox !== null && this.props.selectedSquare !== null) {
+    isRelevantSquare (square: number) {
+        const { selectedBox, selectedSquare } = this.props;
+        if (selectedBox !== null && selectedSquare !== null) {
             const {
                 major: selectedRow,
                 minor: selectedColumn
-            } = circularPositionMap(this.props.selectedBox, this.props.selectedSquare);
+            } = circularPositionMap(selectedBox, selectedSquare);
             const { major: row, minor: column } = circularPositionMap(this.props.box, square);
 
-            return this.props.selectedBox === this.props.box ||
+            return selectedBox === this.props.box ||
                 selectedRow === row ||
                 selectedColumn === column;
         }
@@ -79,3 +92,4 @@ class Box extends Component {
 }
 
 export default Box;
+export type { BoxProps };
