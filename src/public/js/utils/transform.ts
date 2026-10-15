@@ -1,6 +1,6 @@
-function circularTransform(sudoku) {
+function circularTransform <T>(sudoku: T[][]) {
     const width = Math.sqrt(sudoku.length);
-    const transformedSudoku = Array(sudoku.length)
+    const transformedSudoku: T[][] = Array(sudoku.length)
         .fill(null)
         .map(() => []);
 
@@ -18,7 +18,7 @@ function circularTransform(sudoku) {
     return transformedSudoku;
 }
 
-function circularPositionMap (major, minor) {
+function circularPositionMap (major: number, minor: number) {
     const majorGroup = Math.floor(major / 3);
     const minorGroup = Math.floor(minor / 3);
     return {
@@ -27,7 +27,7 @@ function circularPositionMap (major, minor) {
     };
 }
 
-const getColumn = (sudoku, columnNumber) =>
+const getColumn = <T>(sudoku: T[][], columnNumber: number) =>
     sudoku.map(row => row[columnNumber]);
 
 export {

@@ -27,12 +27,17 @@ const buttonClass = css`
     display: block;
 `;
 
-const WinMessage = props =>
+type WinMessageProps = {
+    solved: boolean;
+    resetFunction: () => void;
+};
+
+const WinMessage = (props: WinMessageProps) =>
     props.solved
         ? (<div className={backgroundClass}>
             <div className={containerClass}>
                 <p className={textClass}>Solved!</p>
-                <button className={buttonClass}onClick={props.resetFunction}>Again?</button>
+                <button className={buttonClass} onClick={props.resetFunction}>Again?</button>
             </div>
         </div>)
         : null;

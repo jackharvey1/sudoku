@@ -1,7 +1,11 @@
 import ButtonProvider from './button-provider';
 import { IoCheckmark as CheckIcon } from 'react-icons/io5';
 
-const CheckButton = props => (
+type CheckButtonProps = {
+    onClick: () => void;
+};
+
+const CheckButton = (props: CheckButtonProps) => (
     <ButtonProvider
         onClick={props.onClick}
         text="Check"

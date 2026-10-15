@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
@@ -10,12 +10,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     pool: 'vmThreads',
-    setupFiles: './src/setupTests.js',
+    setupFiles: './src/setupTests.ts',
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
-      include: ['src/**/*.{js,jsx}'],
-      exclude: ['src/index.jsx', 'src/setupTests.js'],
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/index.tsx', 'src/setupTests.ts', 'src/public/js/types.ts'],
       thresholds: {
         branches: 100,
         functions: 100,
@@ -24,4 +24,4 @@ export default defineConfig({
       }
     }
   }
-})
+});

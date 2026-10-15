@@ -1,7 +1,6 @@
 import {
     getClueCount,
     getClueIndices,
-    pickRandomClue,
     removeMirroredCluePair,
     mirrorCoordinates,
     shuffleArray,
@@ -10,26 +9,23 @@ import {
     deepClone,
     arrayExcludingElement
 } from '../../../public/js/utils/array';
-import { sudoku, solvedSudoku } from '../../sudokus.json';
+import { type Grid } from '../../../public/js/types';
+import { sudoku, solvedSudoku } from '../../sudokus';
+
+declare module 'vitest' {
+    interface Matchers<R extends void | Promise<void> = void | Promise<void>> {
+        toHaveMirroredCluesRemoved(): R;
+    }
+}
 
 expect.extend({
-    toHaveMirroredCluesRemoved(received) {
+    toHaveMirroredCluesRemoved(received: Grid) {
         const clueCount = getClueCount(received);
         const twoWereRemoved = clueCount === 79;
-        const centreWasRemoved = received[4][4] === '' && clueCount === 80;
+        const centreWasRemoved = received[4][4] === null && clueCount === 80;
         const pass = twoWereRemoved || centreWasRemoved;
         return {
-            message: () => `expected array to have two clues or centre clue removed`,
-            pass
-        };
-    },
-    toBeRandom(fn) {
-        const first = fn();
-        const second = fn();
-        const third = fn();
-        const pass = first !== second || first !== third;
-        return {
-            message: () => `expected function to be random; got ${first}, ${second}, ${third}`,
+            message: () => 'expected array to have two clues or centre clue removed',
             pass
         };
     }
@@ -50,10 +46,6 @@ describe('Array util functions', () => {
             [7, 1], [7, 3], [7, 5], [7, 7],
             [8, 0], [8, 2], [8, 6], [8, 8]
         ]);
-    });
-
-    it('picks two clues which do not match, i.e. are random', () => {
-        expect(() => pickRandomClue.bind(null, solvedSudoku)).toBeRandom('blah', 'bah2');
     });
 
     it('removes random clues', () => {
@@ -124,6 +116,10 @@ describe('Array util functions', () => {
             [[2, 5, 7], [], [2, 5], [], [6, 7], [], [4, 6], [], [4]],
             [[], [2, 3], [], [2, 6], [1, 3, 6], [1, 3, 6], [], [1, 6, 9], []]
         ])).toEqual([1, 0]);
+    });
+
+    it('returns null when no cell has more than one possible value', () => {
+        expect(getSmallestClueSet([[[], [1]], [[2], []]])).toBeNull();
     });
 
     describe('deep equals', () => {

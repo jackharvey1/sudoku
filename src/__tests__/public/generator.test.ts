@@ -9,7 +9,7 @@ describe('Generating a sudoku', () => {
 
     it('produces a valid starting grid', () => {
         const grid = generateFilledGrid();
-        const rowSums = grid.map(row => row.reduce((sum, cell) => sum + cell));
+        const rowSums = grid.map(row => row.reduce((sum: number, value) => sum + Number(value), 0));
         expect(rowSums).toEqual([
             45, 45, 45, 45, 45, 45, 45, 45, 45
         ]);

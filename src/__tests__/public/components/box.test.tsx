@@ -5,24 +5,24 @@ function renderBox (overrides = {}) {
     return render(<Box
         box={0}
         onClick={() => null}
-        values={['1', '', '', '', '', '', '', '', '']}
+        values={[1, null, null, null, null, null, null, null, null]}
         isUnderCheck={false}
         selectedBox={0}
         selectedSquare={0}
         lockedCells={[0, 1]}
-        solution={['1', '', '', '', '', '', '', '', '']}
+        solution={[1, null, null, null, null, null, null, null, null]}
         {...overrides}
     />);
 }
 
-function cell (square) {
+function cell (square: number) {
     return screen.getByTestId(`cell-0-${square}`);
 }
 
 it('marks the locked cell and the selected cell', () => {
     renderBox({
         lockedCells: [1],
-        solution: ['1', '', '2', '', '', '', '', '', '']
+        solution: [1, null, 2, null, null, null, null, null, null]
     });
 
     expect(cell(1)).toHaveAttribute('data-locked', 'true');

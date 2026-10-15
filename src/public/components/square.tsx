@@ -1,11 +1,24 @@
 import { css } from '@emotion/css';
+import { type Cell } from '../js/types';
 
 const textClass = css`
     padding: 4px;
     display: inline-block;
 `;
 
-const createSquareClass = props => css`
+type SquareProps = {
+    onClick: (box: number, square: number) => void;
+    box: number;
+    square: number;
+    value: Cell;
+    isSelected: boolean;
+    isLocked: boolean;
+    isRelevant: boolean;
+    isUnderCheck: boolean;
+    isCorrect: boolean;
+};
+
+const createSquareClass = (props: SquareProps) => css`
     background-color: ${getBackgroundColour(props)}
 
     font-weight: ${props.isLocked
@@ -25,7 +38,7 @@ const createSquareClass = props => css`
     border: 1px solid rgb(64, 64, 64);
 `;
 
-const getBackgroundColour = props => {
+const getBackgroundColour = (props: SquareProps) => {
     if (props.isUnderCheck) {
         return props.isCorrect
             ? 'rgba(0, 255, 0, 0.35);'
@@ -39,7 +52,7 @@ const getBackgroundColour = props => {
     return 'rgba(255, 255, 255, 1);';
 };
 
-export default function Square (props) {
+export default function Square (props: SquareProps) {
     return (
         <div
             data-testid={`cell-${props.box}-${props.square}`}
@@ -59,3 +72,5 @@ export default function Square (props) {
         </div>
     );
 }
+
+export type { SquareProps };

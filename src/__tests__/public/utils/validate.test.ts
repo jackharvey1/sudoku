@@ -1,5 +1,5 @@
 import { validateSudoku, isSolved } from '../../../public/js/utils/validate';
-import { sudoku, solvedSudoku } from '../../sudokus.json';
+import { sudoku, solvedSudoku } from '../../sudokus';
 
 describe('validating a solved sudoku', () => {
     describe('validating', () => {
