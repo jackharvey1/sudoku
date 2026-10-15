@@ -2,13 +2,19 @@ import js from "@eslint/js";
 import globals from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import tseslint from "typescript-eslint";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
     {
-        files: ["src/**/*.{js,jsx}"],
+        files: ["vite.config.ts"],
+        extends: [js.configs.recommended, tseslint.configs.recommended],
+    },
+    {
+        files: ["src/**/*.{ts,tsx}"],
         extends: [
             js.configs.recommended,
+            tseslint.configs.recommended,
             react.configs.flat.recommended,
             react.configs.flat["jsx-runtime"],
             reactHooks.configs.flat["recommended-latest"],
@@ -86,12 +92,14 @@ export default defineConfig([
             "new-cap": ["error", { properties: false }],
             "new-parens": "error",
             "no-alert": "error",
-            "no-array-constructor": "error",
+            "no-array-constructor": "off",
+            "@typescript-eslint/no-array-constructor": "error",
             "no-bitwise": "error",
             "no-caller": "error",
             "no-div-regex": "error",
             "no-duplicate-imports": "error",
-            "no-empty-function": "error",
+            "no-empty-function": "off",
+            "@typescript-eslint/no-empty-function": "error",
             "no-eq-null": "error",
             "no-eval": "error",
             "no-extend-native": "error",
@@ -105,7 +113,8 @@ export default defineConfig([
             "no-label-var": "error",
             "no-labels": "error",
             "no-lone-blocks": "error",
-            "no-loop-func": "error",
+            "no-loop-func": "off",
+            "@typescript-eslint/no-loop-func": "error",
             "no-mixed-operators": "error",
             "no-multi-spaces": "error",
             "no-multiple-empty-lines": "error",
@@ -118,7 +127,8 @@ export default defineConfig([
             "no-proto": "error",
             "no-prototype-builtins": "error",
             "no-restricted-globals": "error",
-            "no-restricted-imports": "error",
+            "no-restricted-imports": "off",
+            "@typescript-eslint/no-restricted-imports": "error",
             "no-restricted-properties": "error",
             "no-restricted-syntax": "error",
             "no-return-assign": "error",
@@ -134,11 +144,13 @@ export default defineConfig([
             "no-undefined": "error",
             "no-unmodified-loop-condition": "error",
             "no-unneeded-ternary": "error",
-            "no-unused-expressions": "warn",
+            "no-unused-expressions": "off",
+            "@typescript-eslint/no-unused-expressions": "warn",
             "no-useless-call": "error",
             "no-useless-computed-key": "error",
             "no-useless-concat": "error",
-            "no-useless-constructor": "error",
+            "no-useless-constructor": "off",
+            "@typescript-eslint/no-useless-constructor": "error",
             "no-useless-escape": "error",
             "no-useless-rename": "error",
             "no-useless-return": "error",
@@ -170,7 +182,7 @@ export default defineConfig([
         },
     },
     {
-        files: ["src/__tests__/**/*.{js,jsx}"],
+        files: ["src/__tests__/**/*.{ts,tsx}"],
         languageOptions: {
             globals: {
                 describe: "readonly",
@@ -181,7 +193,7 @@ export default defineConfig([
             },
         },
         rules: {
-            "no-empty-function": "off",
+            "@typescript-eslint/no-empty-function": "off",
         },
     },
 ]);

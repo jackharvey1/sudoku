@@ -1,9 +1,10 @@
+import { type Coordinate, type Grid, type PossiblesMap, type SolveResult } from './types';
 import { circularPositionMap, circularTransform, getColumn } from './utils/transform';
 import { getPossibles } from './utils/possibles';
-import { getClueCount, arrayExcludingElement, getSmallestClueSet, deepClone } from './utils/array';
+import { arrayExcludingElement, getSmallestClueSet, deepClone } from './utils/array';
 import { validateSudoku, isSolved } from './utils/validate';
 
-function solve (sudokuAsRows, difficultyTarget = 600) {
+function solve (sudokuAsRows: Grid, difficultyTarget = 600): SolveResult {
     const stack = [sudokuAsRows];
     let branchingDifficulty = 0;
 
@@ -18,44 +19,48 @@ function solve (sudokuAsRows, difficultyTarget = 600) {
             };
         }
 
-        const possiblesMap = getRestrictedPossiblesMap(currentNode);
+        const possiblesMap = getPossiblesMap(currentNode);
 
         const hasNoNakedSingles = !hasNakedSingle(possiblesMap);
-        const hasPossibles = getClueCount(possiblesMap) > 0;
         const isValid = validateSudoku(currentNode);
 
         if (branchingDifficulty > difficultyTarget) {
             return {
-                sudoku: null,
-                difficulty: Infinity
+                branchingDifficulty: Infinity,
+                sudoku: null
             };
         }
 
         if (hasNoNakedSingles) {
-            if (isValid && hasPossibles) {
+            const smallestClueSet = getSmallestClueSet(possiblesMap);
+            if (isValid && smallestClueSet) {
                 branchingDifficulty += 100;
-                pushPossiblesOntoStack(stack, currentNode, possiblesMap);
+                pushPossiblesOntoStack(stack, currentNode, possiblesMap, smallestClueSet);
             }
         } else {
             const nextNode = flattenNakedSingles(currentNode, possiblesMap);
             stack.push(nextNode);
         }
     }
+
+    throw new Error('Sudoku has no solution');
 }
 
-function flattenNakedSingles (currentNode, possiblesMap) {
-    return currentNode.map((row, i) =>
+const flattenNakedSingles = (currentNode: Grid, possiblesMap: PossiblesMap) =>
+    currentNode.map((row, i) =>
         row.map((item, j) =>
-            possiblesMap[i][j].length === 1 && item === ''
+            possiblesMap[i][j].length === 1 && item === null
                 ? possiblesMap[i][j][0]
                 : item
         )
     );
-}
 
-function pushPossiblesOntoStack (stack, currentNode, possiblesMap) {
-    const [row, column] = getSmallestClueSet(possiblesMap);
-
+function pushPossiblesOntoStack (
+    stack: Grid[],
+    currentNode: Grid,
+    possiblesMap: PossiblesMap,
+    [row, column]: Coordinate
+) {
     possiblesMap[row][column].forEach(possible => {
         const nextNode = deepClone(currentNode);
         nextNode[row][column] = possible;
@@ -63,13 +68,12 @@ function pushPossiblesOntoStack (stack, currentNode, possiblesMap) {
     });
 }
 
-function hasNakedSingle (possiblesMap) {
-    return possiblesMap.some(possiblesRow =>
+const hasNakedSingle = (possiblesMap: PossiblesMap) =>
+    possiblesMap.some(possiblesRow =>
         possiblesRow.some(cellPossibles => cellPossibles.length === 1)
     );
-}
 
-function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
+function restrictionBasedOnRange (possibles: PossiblesMap, rowNumber: number, columnNumber: number) {
     const { major: boxNumber } = circularPositionMap(rowNumber, columnNumber);
     const possiblesInBox = circularTransform(possibles)[boxNumber];
     const possiblesOnRow = possibles[rowNumber];
@@ -82,9 +86,10 @@ function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
         const columnExcludingThisElement = arrayExcludingElement(possiblesOnColumn, rowNumber).join();
         const rowExcludingThisElement = arrayExcludingElement(possiblesOnRow, columnNumber).join();
 
-        const isOnlyPossibleInBox = !boxExcludingThisElement.includes(relevantPossibles[j]);
-        const isOnlyPossibleOnRow = !rowExcludingThisElement.includes(relevantPossibles[j]);
-        const isOnlyPossibleOnColumn = !columnExcludingThisElement.includes(relevantPossibles[j]);
+        const candidate = String(relevantPossibles[j]);
+        const isOnlyPossibleInBox = !boxExcludingThisElement.includes(candidate);
+        const isOnlyPossibleOnRow = !rowExcludingThisElement.includes(candidate);
+        const isOnlyPossibleOnColumn = !columnExcludingThisElement.includes(candidate);
 
         if (isOnlyPossibleOnRow || isOnlyPossibleOnColumn || isOnlyPossibleInBox) {
             return [relevantPossibles[j]];
@@ -94,29 +99,23 @@ function restrictionBasedOnRange (possibles, rowNumber, columnNumber) {
     return relevantPossibles;
 }
 
-function getRestrictedPossiblesMap (sudokuAsRows) {
-    return getPossiblesMap(sudokuAsRows)
+const getPossiblesMap = (sudokuAsRows: Grid) =>
+    sudokuAsRows
+        .map((rowValues, row) =>
+            rowValues.map((item, column) =>
+                item === null
+                    ? getPossibles(sudokuAsRows, row, column)
+                    : []
+            )
+        )
         .map((rowOfPossibles, row, possiblesMap) =>
             rowOfPossibles.map((cellPossibles, cell) =>
                 restrictionBasedOnRange(possiblesMap, row, cell)
             )
         );
-}
-
-function getPossiblesMap (sudokuAsRows) {
-    return sudokuAsRows
-        .map((rowValues, row) =>
-            rowValues.map((item, column) =>
-                item === ''
-                    ? getPossibles(sudokuAsRows, row, column)
-                    : []
-            )
-        );
-}
 
 export {
     solve,
     restrictionBasedOnRange,
-    getRestrictedPossiblesMap,
     getPossiblesMap
 };

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { emptySudoku } from '../../sudokus.json';
-import { deepClone } from '../../../public/js/utils/array.js';
+import { emptySudoku } from '../../sudokus';
+import { deepClone } from '../../../public/js/utils/array';
 import Sudoku from '../../../public/components/sudoku';
 
 it('renders every cell and passes selection and locks through', () => {

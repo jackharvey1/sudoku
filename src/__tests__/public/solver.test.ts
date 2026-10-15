@@ -1,11 +1,11 @@
 import {
     solve,
     restrictionBasedOnRange,
-    getRestrictedPossiblesMap,
     getPossiblesMap
 } from '../../public/js/solver';
 import { isSolved } from '../../public/js/utils/validate';
-import { sudoku, solvedSudoku, trickySudoku } from '../sudokus.json';
+import { emptySudoku, sudoku, solvedSudoku, trickySudoku } from '../sudokus';
+import { deepClone } from '../../public/js/utils/array';
 
 const restrictedPossiblesMap = [
     [[2, 4, 5, 9], [2, 3, 4, 5, 8], [2, 3, 5, 8, 9], [], [3, 5, 6, 8, 9], [], [3, 5, 6, 8, 9], [2, 5, 6, 9], [2, 3, 8, 9]],
@@ -33,11 +33,7 @@ const possiblesMap = [
 
 describe('When solving sudoku', () => {
     it('generates a restricted possibility map', () => {
-        expect(getRestrictedPossiblesMap(sudoku)).toEqual(restrictedPossiblesMap);
-    });
-
-    it('generates a possibility map', () => {
-        expect(getPossiblesMap(sudoku)).toEqual(possiblesMap);
+        expect(getPossiblesMap(sudoku)).toEqual(restrictedPossiblesMap);
     });
 
     it('eliminates all other possibles in a cell due to 1-9 restriction on a row', () => {
@@ -57,7 +53,18 @@ describe('When solving sudoku', () => {
     });
 
     it('solves a sudoku requiring backtracking', () => {
-        const solution = solve(trickySudoku, 2000);
-        expect(isSolved(solution.sudoku)).toBe(true);
+        const { sudoku: solution } = solve(trickySudoku, 2000);
+        expect(solution && isSolved(solution)).toBe(true);
+    });
+
+    it('gives up once the difficulty target is exceeded', () => {
+        expect(solve(trickySudoku, 0)).toEqual({ branchingDifficulty: Infinity, sudoku: null });
+    });
+
+    it('throws when the sudoku has no solution', () => {
+        const unsolvable = deepClone(emptySudoku);
+        unsolvable[0][0] = 1;
+        unsolvable[0][1] = 1;
+        expect(() => solve(unsolvable)).toThrow('Sudoku has no solution');
     });
 });

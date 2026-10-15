@@ -1,5 +1,5 @@
 import { getPossibles, getRelatedCells } from '../../../public/js/utils/possibles';
-import { sudoku } from '../../sudokus.json';
+import { sudoku } from '../../sudokus';
 
 describe('Working with possibles', () => {
     it('it returns possibilities for a position', () => {

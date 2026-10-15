@@ -1,16 +1,27 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react';
-import { emptySudoku, solvedSudoku } from '../../sudokus.json';
+import { emptySudoku, solvedSudoku } from '../../sudokus';
 import { generatePuzzle } from '../../../public/js/generator';
-import { deepClone } from '../../../public/js/utils/array.js';
+import { deepClone } from '../../../public/js/utils/array';
+import { type Grid } from '../../../public/js/types';
 import App from '../../../public/components/app';
 
 vi.mock('../../../public/js/generator', () => ({
     generatePuzzle: vi.fn()
 }));
 
-function puzzle ({ sudoku = emptySudoku, solution = solvedSudoku, difficulty = Infinity } = {}) {
+const generatePuzzleMock = vi.mocked(generatePuzzle);
+
+function puzzle ({
+    sudoku = emptySudoku,
+    solution = solvedSudoku,
+    difficulty = Infinity
+}: {
+    sudoku?: Grid;
+    solution?: Grid;
+    difficulty?: number;
+} = {}) {
     return {
         sudoku: deepClone(sudoku),
         solution: deepClone(solution),
@@ -18,19 +29,19 @@ function puzzle ({ sudoku = emptySudoku, solution = solvedSudoku, difficulty = I
     };
 }
 
-function press (key) {
+function press (key: string) {
     act(() => {
         window.dispatchEvent(new KeyboardEvent('keydown', { key }));
     });
 }
 
-function cell (box, square) {
+function cell (box: number, square: number) {
     return screen.getByTestId(`cell-${box}-${square}`);
 }
 
 beforeEach(() => {
-    generatePuzzle.mockReset();
-    generatePuzzle.mockImplementation(() => puzzle());
+    generatePuzzleMock.mockReset();
+    generatePuzzleMock.mockImplementation(() => puzzle());
 });
 
 it('renders a board, the difficulty, and both buttons', () => {
@@ -43,21 +54,34 @@ it('renders a board, the difficulty, and both buttons', () => {
     expect(screen.queryByText('Solved!')).not.toBeInTheDocument();
 });
 
-it('renders nothing when the puzzle has no grid', () => {
-    generatePuzzle.mockImplementation(() => ({
-        sudoku: null,
-        solution: null,
-        difficulty: null
-    }));
+it('moves from the top-left cell when an arrow is pressed with nothing selected', () => {
+    render(<App />);
 
+    press('ArrowDown');
+
+    expect(cell(0, 3)).toHaveAttribute('data-selected', 'true');
+});
+
+it('ignores number keys when nothing is selected', () => {
     const { container } = render(<App />);
 
-    expect(container).toBeEmptyDOMElement();
+    press('1');
+
+    expect(container.querySelector('[data-selected="true"]')).toBeNull();
+    expect(screen.queryByText('1')).not.toBeInTheDocument();
+});
+
+it('ignores Backspace when nothing is selected', () => {
+    const { container } = render(<App />);
+
+    press('Backspace');
+
+    expect(container.querySelector('[data-selected="true"]')).toBeNull();
 });
 
 it('loads a new puzzle when Reset is pressed', async () => {
     const user = userEvent.setup();
-    generatePuzzle
+    generatePuzzleMock
         .mockImplementationOnce(() => puzzle({ difficulty: 1 }))
         .mockImplementationOnce(() => puzzle({ difficulty: 2 }));
 
@@ -124,7 +148,7 @@ it('does not replace a clue', async () => {
     const user = userEvent.setup();
     const sudoku = deepClone(emptySudoku);
     sudoku[0][0] = solvedSudoku[0][0];
-    generatePuzzle.mockImplementation(() => puzzle({ sudoku }));
+    generatePuzzleMock.mockImplementation(() => puzzle({ sudoku }));
 
     render(<App />);
     await user.click(cell(0, 0));
@@ -134,7 +158,7 @@ it('does not replace a clue', async () => {
 });
 
 describe('arrow keys', () => {
-    async function startAt (box, square) {
+    async function startAt (box: number, square: number) {
         const user = userEvent.setup();
         render(<App />);
         await user.click(cell(box, square));

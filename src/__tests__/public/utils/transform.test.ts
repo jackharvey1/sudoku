@@ -3,7 +3,7 @@ import {
     getColumn,
     circularPositionMap
 } from '../../../public/js/utils/transform';
-import { solvedSudoku, solvedSudokuTransformed } from '../../sudokus.json';
+import { solvedSudoku, solvedSudokuTransformed } from '../../sudokus';
 
 describe('Performing transforms', () => {
     it('transforms to rows', () => {
