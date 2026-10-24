@@ -54,6 +54,16 @@ it('renders a board, the difficulty, and both buttons', () => {
     expect(screen.queryByText('Solved!')).not.toBeInTheDocument();
 });
 
+it('does not show the win message until every cell matches the solution', () => {
+    const sudoku = deepClone(solvedSudoku);
+    sudoku[8][8] = null;
+    generatePuzzleMock.mockImplementation(() => puzzle({ sudoku }));
+
+    render(<App />);
+
+    expect(screen.queryByText('Solved!')).not.toBeInTheDocument();
+});
+
 it('moves from the top-left cell when an arrow is pressed with nothing selected', () => {
     render(<App />);
 

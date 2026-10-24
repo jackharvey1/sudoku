@@ -75,9 +75,9 @@ function deepEquals (firstArray: DeepValue[], secondArray: DeepValue[]): boolean
         const left = firstArray[i];
         const right = secondArray[i];
         if (Array.isArray(left)) {
-            return Array.isArray(right)
-                ? deepEquals(left, right)
-                : false;
+            if (!Array.isArray(right) || !deepEquals(left, right)) {
+                return false;
+            }
         } else if (left !== right) {
             return false;
         }

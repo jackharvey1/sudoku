@@ -147,6 +147,14 @@ describe('Array util functions', () => {
                 )).toBe(false);
         });
 
+        it('returns false when only a later nested array differs', () => {
+            expect(
+                deepEquals(
+                    [[1], [2], [3]],
+                    [[1], [2], [4]]
+                )).toBe(false);
+        });
+
         it('returns false when arrays are not in the same position', () => {
             expect(deepEquals([[1]], [1])).toBe(false);
         });
